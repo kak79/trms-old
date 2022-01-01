@@ -29,11 +29,25 @@ import com.revature.data.postgres.StatusPostgres;
  *
  */
 public class DAOFactory {
-	public static CommentDAO getCommentDAO() { return new CommentPostgres(); }
-	public static DepartmentDAO getDepartmentDAO() { return new DepartmentPostgres(); }
-	public static EmployeeDAO getEmployeeDAO() { return new EmployeePostgres(); }
-	public static EventTypeDAO getEventTypeDAO() { return new EventTypePostgres(); }
-	public static GradingFormatDAO getGradingFormatDAO() { return new GradingFormatPostgres(); }
-	public static ReimbursementDAO getReimbursementDAO() { return new ReimbursementPostgres(); }
-	public static StatusDAO getStatusDAO() { return new StatusPostgres(); }
+	public static CommentDAO getCommentDAO() { 
+		return new CommentPostgres(); 
+	}
+	public static DepartmentDAO getDepartmentDAO() { 
+		return new DepartmentPostgres(); 
+	}
+	public static EmployeeDAO getEmployeeDAO() { 
+		return new EmployeePostgres(); 
+	}
+	public static EventTypeDAO getEventTypeDAO() { 
+		return new EventTypePostgres(); 
+	}
+	public static GradingFormatDAO getGradingFormatDAO() { 
+		return new GradingFormatPostgres(); 
+	}
+	public static ReimbursementDAO getReimbursementDAO() { 
+		return new ReimbursementPostgres(); 
+	}
+	public static StatusDAO getStatusDAO() { 
+		return new StatusPostgres(); 
+	}
 }
