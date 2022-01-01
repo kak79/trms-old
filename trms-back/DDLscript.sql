@@ -1,6 +1,5 @@
 
 
-
 drop table if exists comment cascade;
 drop table if exists reimbursement cascade;
 drop table if exists status cascade;
@@ -21,8 +20,8 @@ create table if not exists employee (
 	emp_id serial unique not null primary key,
 	first_name varchar(40) not null,
 	last_name varchar(40) not null,
-	username varchar(30) not null,
-	passwd varchar(25) not null,
+	username varchar(30),
+	passwd varchar(25),
 	role_id integer not null references user_role,
 	funds real not null,
 	supervisor_id integer not null,
@@ -32,8 +31,8 @@ create table if not exists employee (
 
 create table if not exists department (
 	dept_id serial unique not null primary key,
-	dept_name varchar(30) not null, 
-	dept_head_id integer not null references employee
+	dept_name varchar(30), 
+	dept_head_id integer references employee
 );
 
 
@@ -47,7 +46,7 @@ create table if not exists event_type (
 create table if not exists grading_format (
 	format_id serial unique not null primary key,
 	format_name varchar(30) not null, 
-	example varchar(30) not null
+	example varchar(30)
 );
 
 
@@ -60,12 +59,12 @@ create table if not exists status (
 
 create table if not exists reimbursement (
 	req_id serial unique not null primary key,
-	emp_id integer not null references employee,
-	event_date date not null, 
-	event_time time not null, 
-	location varchar(50) not null, 
-	description varchar(75) not null, 
-	cost real not null,
+	emp_id integer references employee,
+	event_date date, 
+	event_time time, 
+	location varchar(50), 
+	description varchar(75), 
+	cost real,
 	grading_format_id integer not null references grading_format,
 	event_type_id integer not null references event_type,
 	status_id integer not null references status, 
@@ -75,8 +74,8 @@ create table if not exists reimbursement (
 
 create table if not exists comment (
 	comment_id serial unique not null primary key,
-	req_id integer not null references reimbursement,
-	approver_id integer not null references employee, 
+	req_id integer references reimbursement,
+	approver_id integer references employee, 
 	comment_text varchar(100) not null, 
 	sent_at time not null
 );
@@ -93,38 +92,6 @@ alter table employee
 add constraint supervisor_id
 foreign key (supervisor_id)
 references employee (emp_id);
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 

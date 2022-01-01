@@ -29,7 +29,7 @@ public class EventTypePostgres implements EventTypeDAO {
 				eventType = new EventType();
 				eventType.setEventId(id);
 				eventType.setName(resultSet.getString("type_name"));
-				eventType.setPercentCovered(resultSet.getDouble("percent_covered"));
+				eventType.setPercentCovered(resultSet.getDouble("percent_coverage"));
 			}
 		
 		} catch (SQLException e) {
@@ -39,8 +39,8 @@ public class EventTypePostgres implements EventTypeDAO {
 	}
 
 	@Override
-	public Set<Object> getAll() {
-		Set<Object> eventTypes = new HashSet<>();
+	public Set<EventType> getAll() {
+		Set<EventType> eventTypes = new HashSet<>();
 		try (Connection conn = connUtil.getConnection()) {
 			String sql = "select * from event_type";
 			Statement stmt = conn.createStatement();
@@ -51,7 +51,7 @@ public class EventTypePostgres implements EventTypeDAO {
 				EventType eventType = new EventType();
 				eventType.setEventId(resultSet.getInt("type_id"));
 				eventType.setName(resultSet.getString("type_name"));
-				eventType.setPercentCovered(resultSet.getDouble("percent_covered"));
+				eventType.setPercentCovered(resultSet.getDouble("percent_coverage"));
 				
 				eventTypes.add(eventType);
 			}
@@ -63,8 +63,8 @@ public class EventTypePostgres implements EventTypeDAO {
 	}
 
 	@Override
-	public Set<EventType> getByName(String name) {
-		Set<EventType> eventTypes = new HashSet<>();
+	public EventType getByName(String name) {
+		EventType eventType = new EventType();
 		try (Connection conn = connUtil.getConnection()) {
 			String sql = "select * from event_type where type_name=?";
 			PreparedStatement pStmt = conn.prepareStatement(sql);
@@ -73,18 +73,18 @@ public class EventTypePostgres implements EventTypeDAO {
 			ResultSet resultSet = pStmt.executeQuery();
 			
 			if (resultSet.next()) {
-				EventType eventType = new EventType();
+				
 				eventType.setEventId(resultSet.getInt("type_id"));
 				eventType.setName(resultSet.getString("type_name"));
-				eventType.setPercentCovered(resultSet.getDouble("percent_covered"));
+				eventType.setPercentCovered(resultSet.getDouble("percent_coverage"));
 				
-				eventTypes.add(eventType);
+				
 			}
 		
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
-		return eventTypes;
+		return eventType;
 	}
 
 }

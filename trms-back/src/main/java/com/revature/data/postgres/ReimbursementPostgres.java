@@ -256,8 +256,8 @@ public class ReimbursementPostgres implements ReimbursementDAO {
 	}
 
 	@Override
-	public Set<Reimbursement> getByRequestor(Employee requestor) {
-		Set<Reimbursement> requests = new HashSet<>();
+	public Reimbursement getByRequestor(Employee requestor) {
+		Reimbursement request = new Reimbursement();
 		try (Connection conn = connUtil.getConnection()) {
 			String sql="select" + 
 					" req_id," + 
@@ -287,7 +287,7 @@ public class ReimbursementPostgres implements ReimbursementDAO {
 			
 			ResultSet resultSet = pStmt.executeQuery();
 			while (resultSet.next()) {
-				Reimbursement request = new Reimbursement();
+				
 				request.setReqId(resultSet.getInt("req_id"));
 				request.getRequestor().setEmpId(resultSet.getInt("emp_id"));
 				request.setEventDate(resultSet.getDate("event_date").toLocalDate());
@@ -312,12 +312,12 @@ public class ReimbursementPostgres implements ReimbursementDAO {
 				request.setStatus(s);
 				request.setSubmittedAt(resultSet.getTimestamp("submitted_at").toLocalDateTime());
 				
-				requests.add(request);
+				
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
-		return requests;
+		return request;
 	}
 
 	@Override

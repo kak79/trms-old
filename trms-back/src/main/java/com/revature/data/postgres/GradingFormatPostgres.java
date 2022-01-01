@@ -39,8 +39,8 @@ public class GradingFormatPostgres implements GradingFormatDAO {
 	}
 
 	@Override
-	public Set<Object> getAll() {
-		Set<Object> formats = new HashSet<>();
+	public Set<GradingFormat> getAll() {
+		Set<GradingFormat> formats = new HashSet<>();
 		try (Connection conn = connUtil.getConnection()) {
 			String sql = "select * from grading_format";
 			Statement stmt = conn.createStatement();
@@ -52,6 +52,7 @@ public class GradingFormatPostgres implements GradingFormatDAO {
 				format.setFormatId(resultSet.getInt("format_id"));
 				format.setName(resultSet.getString("format_name"));
 				format.setExample(resultSet.getString("example"));
+				formats.add(format);
 			}
 		
 		} catch (SQLException e) {
@@ -61,8 +62,8 @@ public class GradingFormatPostgres implements GradingFormatDAO {
 	}
 
 	@Override
-	public Set<GradingFormat> getByName(String name) {
-		Set<GradingFormat> formats = new HashSet<>();
+	public GradingFormat getByName(String name) {
+		GradingFormat format = new GradingFormat();
 		try (Connection conn = connUtil.getConnection()) {
 			String sql = "select * from grading_format where format_name=?";
 			PreparedStatement pStmt = conn.prepareStatement(sql);
@@ -71,7 +72,7 @@ public class GradingFormatPostgres implements GradingFormatDAO {
 			ResultSet resultSet = pStmt.executeQuery();
 			
 			while (resultSet.next()) {
-				GradingFormat format = new GradingFormat();
+				
 				format.setFormatId(resultSet.getInt("format_id"));
 				format.setName(resultSet.getString("format_name"));
 				format.setExample(resultSet.getString("example"));
@@ -80,7 +81,7 @@ public class GradingFormatPostgres implements GradingFormatDAO {
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
-		return formats;
+		return format;
 	}
 
 }
