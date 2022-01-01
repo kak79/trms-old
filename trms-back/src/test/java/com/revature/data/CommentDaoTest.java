@@ -40,6 +40,9 @@ public class CommentDaoTest {
 	public void getAllNotNull()
 	{
 		Set<Comment> actual = cd.getAll();
+		
+
+		
 		assertNotEquals(null, actual);
 	}
 	

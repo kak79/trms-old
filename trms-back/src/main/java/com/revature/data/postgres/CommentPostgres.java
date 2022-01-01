@@ -83,14 +83,14 @@ public class CommentPostgres implements CommentDAO {
 			
 			ResultSet resultSet = stmt.executeQuery(sql);
 			
-			if (resultSet.next()) {
+			while (resultSet.next()) {
 				Comment comment = new Comment();
 				comment.setCommentId(resultSet.getInt("comment_id"));
 				comment.setCommentText(resultSet.getString("comment_text"));
 				comment.getApprover().setEmpId(resultSet.getInt("approver_id"));
 				comment.getRequest().setReqId(resultSet.getInt("req_id"));
 				comment.setSentAt(resultSet.getTimestamp("sent_at").toLocalDateTime());
-				
+				System.out.println(comment);
 				comments.add(comment);
 			}
 		

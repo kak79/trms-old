@@ -10,7 +10,7 @@ public class GradingFormat {
 	public GradingFormat() {
 		formatId=4;
 		name="Other";
-		example=null;
+		example="TBD";
 	}
 
 	public int getFormatId() {

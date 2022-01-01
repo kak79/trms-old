@@ -1,6 +1,5 @@
 
 
-
 INSERT INTO user_role
 (role_name)
 VALUES
@@ -99,13 +98,14 @@ VALUES
 INSERT INTO status
 (status_name, approver)
 VALUES
-('Auto-Approved', 'System'),
+('Pending Approval', 'System'),
 ('Denied', 'Supervisor'),
 ('Approved', 'Supervisor'),
 ('Denied', 'Manager'),
 ('Approved', 'Manager'),
 ('Denied', 'Benefits Coordinator'),
-('Approved', 'Benefits Coordinator');
+('Approved', 'Benefits Coordinator'),
+('Auto-Approved', 'System');
 
 
 INSERT INTO reimbursement

@@ -17,10 +17,11 @@ public class Reimbursement {
 	private EventType eventType;
 	private Status status;
 	private LocalDateTime submittedAt;
+	private int empId;
 	
 	public Reimbursement() {
 		reqId=0;
-		requestor=null;
+		requestor=new Employee(empId);
 		eventDate=null;
 		eventTime=null;
 		location="";

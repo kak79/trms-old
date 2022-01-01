@@ -10,7 +10,7 @@ public class Status {
 	public Status() {
 		statusId=1;
 		name="Pending Approval";
-		approver="Direct Supervisor";
+		approver="System";
 	}
 
 	public int getStatusId() {
