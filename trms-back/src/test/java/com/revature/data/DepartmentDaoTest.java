@@ -10,9 +10,10 @@ import org.junit.jupiter.api.Test;
 
 import com.revature.beans.Department;
 import com.revature.data.postgres.DepartmentPostgres;
+import com.revature.utils.DAOFactory;
 
 public class DepartmentDaoTest {
-	private DepartmentDAO dd = new DepartmentPostgres();
+	private DepartmentDAO dd = DAOFactory.getDepartmentDAO();
 	
 	
 	@BeforeEach
@@ -76,3 +77,11 @@ public class DepartmentDaoTest {
 	
 	
 }
+
+
+
+
+
+
+
+

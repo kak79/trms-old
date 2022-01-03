@@ -11,10 +11,11 @@ import org.junit.jupiter.api.Test;
 import com.revature.beans.Department;
 import com.revature.beans.Employee;
 import com.revature.data.postgres.EmployeePostgres;
+import com.revature.utils.DAOFactory;
 
 public class EmployeeDaoTest
 {
-	private EmployeeDAO ed = new EmployeePostgres();
+	private EmployeeDAO ed = DAOFactory.getEmployeeDAO();
 	
 	@BeforeEach
 	public void setup()
@@ -46,7 +47,7 @@ public class EmployeeDaoTest
 	public void getByIdValidEmployee()
 	{
 		String expected = "emongan0";
-		Employee one = ed.getById(1);
+		Employee one = ed.getById(2);
 		String actual = one.getUsername();
 		assertEquals(expected, actual);
 	}
@@ -60,8 +61,9 @@ public class EmployeeDaoTest
 	
 	public void getByUsernameNotNull()
 	{
-		String name = "emongan0";
-		Employee actual = ed.getByUsername(name);
+		String expected = "emongan0";
+		Employee emp = ed.getByUsername(expected);
+		String actual = emp.getUsername();
 		assertNotEquals(null, actual);
 	}
 	
@@ -87,4 +89,9 @@ public class EmployeeDaoTest
 	}
 	
 }
+
+
+
+
+
 

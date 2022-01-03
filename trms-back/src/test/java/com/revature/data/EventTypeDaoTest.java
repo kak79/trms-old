@@ -10,9 +10,10 @@ import org.junit.jupiter.api.Test;
 
 import com.revature.beans.EventType;
 import com.revature.data.postgres.EventTypePostgres;
+import com.revature.utils.DAOFactory;
 
 public class EventTypeDaoTest {
-	private EventTypeDAO etd = new EventTypePostgres();
+	private EventTypeDAO etd = DAOFactory.getEventTypeDAO();
 	
 	@BeforeEach
 	public void setup()
@@ -75,3 +76,7 @@ public class EventTypeDaoTest {
 	
 
 }
+
+
+
+

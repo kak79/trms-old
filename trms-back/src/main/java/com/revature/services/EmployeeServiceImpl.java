@@ -15,6 +15,7 @@ import com.revature.data.EventTypeDAO;
 import com.revature.data.GradingFormatDAO;
 import com.revature.data.ReimbursementDAO;
 import com.revature.data.StatusDAO;
+import com.revature.exceptions.WrongUsrnmPsswrdException;
 import com.revature.utils.DAOFactory;
 
 public class EmployeeServiceImpl implements EmployeeService {
@@ -26,10 +27,20 @@ public class EmployeeServiceImpl implements EmployeeService {
 	private EmployeeDAO empDao = DAOFactory.getEmployeeDAO();
 
 	@Override
+	public Employee logIn(String username, String password) throws WrongUsrnmPsswrdException{
+		Employee emp = empDao.getByUsername(username);
+		if (emp != null && emp.getPassword().equals(password)) {
+			return emp;
+		} else {
+			throw new WrongUsrnmPsswrdException();
+		}
+	}
+	
+	@Override
 	public Map<String, Set<Object>> getRequestOptions() {
 		Map<String,Set<Object>> requestOptions = new HashMap<>();
-		requestOptions.put("eventTypes", eventTypeDao.getAll());
-		requestOptions.put("gradingFormats", gradFormatDao.getAll());
+//		requestOptions.put("eventTypes", eventTypeDao.getAll());
+//		requestOptions.put("gradingFormats", gradFormatDao.getAll());
 		return requestOptions;
 	}
 

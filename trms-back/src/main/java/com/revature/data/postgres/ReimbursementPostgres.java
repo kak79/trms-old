@@ -8,6 +8,9 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.sql.Time;
 import java.sql.Timestamp;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.time.LocalTime;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -69,7 +72,7 @@ public class ReimbursementPostgres implements ReimbursementDAO {
 
 	@Override
 	public Reimbursement getById(int id) {
-		Reimbursement request = null;
+		Reimbursement request = new Reimbursement();
 		try (Connection conn = connUtil.getConnection()) {
 			String sql="select" + 
 					" req_id," + 
@@ -99,30 +102,47 @@ public class ReimbursementPostgres implements ReimbursementDAO {
 			
 			ResultSet resultSet = pStmt.executeQuery();
 			while (resultSet.next()) {
-				request = new Reimbursement();
-				request.setReqId(resultSet.getInt("req_id"));
-				request.getRequestor().setEmpId(resultSet.getInt("emp_id"));
-				request.setEventDate(resultSet.getDate("event_date").toLocalDate());
-				request.setEventTime(resultSet.getTime("event_time").toLocalTime());
-				request.setLocation(resultSet.getString("location"));
-				request.setDescription(resultSet.getString("description"));
-				request.setCost(resultSet.getDouble("cost"));
+				int rId = resultSet.getInt("req_id");
+				int eId = resultSet.getInt("emp_id");
+				LocalDate ld = resultSet.getDate("event_date").toLocalDate();
+				LocalTime lt = resultSet.getTime("event_time").toLocalTime();
+				String loc = resultSet.getString("location");
+				String desc = resultSet.getString("description");
+				double cost = resultSet.getDouble("cost");
+				int gfId = resultSet.getInt("grading_format_id");
+				String fn = resultSet.getString("format_name");
+				String fe = resultSet.getString("format_example");
+				int etId = resultSet.getInt("event_type_id");
+				String tn = resultSet.getString("type_name");
+				double pCov = resultSet.getDouble("percent_coverage");
+				int sId = resultSet.getInt("status_id");
+				String sn = resultSet.getString("status_name");
+				String approver = resultSet.getString("approver");
+				LocalDateTime ldt = resultSet.getTimestamp("submitted_at").toLocalDateTime();
+				
+				request.setReqId(rId);
+				request.getRequestor().setEmpId(eId);
+				request.setEventDate(ld);
+				request.setEventTime(lt);
+				request.setLocation(loc);
+				request.setDescription(desc);
+				request.setCost(cost);
 				GradingFormat gf = new GradingFormat();
-				gf.setFormatId(resultSet.getInt("grading_format_id"));
-				gf.setName(resultSet.getString("format_name"));
-				gf.setExample(resultSet.getString("format_example"));
+				gf.setFormatId(gfId);
+				gf.setName(fn);
+				gf.setExample(fe);
 				request.setGradingFormat(gf);
 				EventType et = new EventType();
-				et.setEventId(resultSet.getInt("event_type_id"));
-				et.setName(resultSet.getString("type_name"));
-				et.setPercentCovered(resultSet.getDouble("percent_coverage"));
+				et.setEventId(etId);
+				et.setName(tn);
+				et.setPercentCovered(pCov);
 				request.setEventType(et);
 				Status s = new Status();
-				s.setStatusId(resultSet.getInt("status_id"));
-				s.setName(resultSet.getString("status_name"));
-				s.setApprover(resultSet.getString("approver"));
+				s.setStatusId(sId);
+				s.setName(sn);
+				s.setApprover(approver);
 				request.setStatus(s);
-				request.setSubmittedAt(resultSet.getTimestamp("submitted_at").toLocalDateTime());
+				request.setSubmittedAt(ldt);
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -160,31 +180,50 @@ public class ReimbursementPostgres implements ReimbursementDAO {
 			
 			ResultSet resultSet = stmt.executeQuery(sql);
 			while (resultSet.next()) {
+				int rId = resultSet.getInt("req_id");
+				int eId = resultSet.getInt("emp_id");
+				LocalDate ld = resultSet.getDate("event_date").toLocalDate();
+				LocalTime lt = resultSet.getTime("event_time").toLocalTime();
+				String loc = resultSet.getString("location");
+				String desc = resultSet.getString("description");
+				double cost = resultSet.getDouble("cost");
+				int gfId = resultSet.getInt("grading_format_id");
+				String fn = resultSet.getString("format_name");
+				String fe = resultSet.getString("format_example");
+				int etId = resultSet.getInt("event_type_id");
+				String tn = resultSet.getString("type_name");
+				double pCov = resultSet.getDouble("percent_coverage");
+				int sId = resultSet.getInt("status_id");
+				String sn = resultSet.getString("status_name");
+				String approver = resultSet.getString("approver");
+				LocalDateTime ldt = resultSet.getTimestamp("submitted_at").toLocalDateTime();
+			
 				Reimbursement request = new Reimbursement();
-				request.setReqId(resultSet.getInt("req_id"));
-				request.getRequestor().setEmpId(resultSet.getInt("emp_id"));
-				request.setEventDate(resultSet.getDate("event_date").toLocalDate());
-				request.setEventTime(resultSet.getTime("event_time").toLocalTime());
-				request.setLocation(resultSet.getString("location"));
-				request.setDescription(resultSet.getString("description"));
-				request.setCost(resultSet.getDouble("cost"));
+				
+				request.setReqId(rId);
+				request.getRequestor().setEmpId(eId);
+				request.setEventDate(ld);
+				request.setEventTime(lt);
+				request.setLocation(loc);
+				request.setDescription(desc);
+				request.setCost(cost);
 				GradingFormat gf = new GradingFormat();
-				gf.setFormatId(resultSet.getInt("grading_format_id"));
-				gf.setName(resultSet.getString("format_name"));
-				gf.setExample(resultSet.getString("format_example"));
+				gf.setFormatId(gfId);
+				gf.setName(fn);
+				gf.setExample(fe);
 				request.setGradingFormat(gf);
 				EventType et = new EventType();
-				et.setEventId(resultSet.getInt("event_type_id"));
-				et.setName(resultSet.getString("type_name"));
-				et.setPercentCovered(resultSet.getDouble("percent_coverage"));
+				et.setEventId(etId);
+				et.setName(tn);
+				et.setPercentCovered(pCov);
 				request.setEventType(et);
 				Status s = new Status();
-				s.setStatusId(resultSet.getInt("status_id"));
-				s.setName(resultSet.getString("status_name"));
-				s.setApprover(resultSet.getString("approver"));
+				s.setStatusId(sId);
+				s.setName(sn);
+				s.setApprover(approver);
 				request.setStatus(s);
-				request.setSubmittedAt(resultSet.getTimestamp("submitted_at").toLocalDateTime());
-				
+				request.setSubmittedAt(ldt);
+		
 				requests.add(request);
 			}
 		} catch (SQLException e) {
@@ -256,8 +295,8 @@ public class ReimbursementPostgres implements ReimbursementDAO {
 	}
 
 	@Override
-	public Reimbursement getByRequestor(Employee requestor) {
-		Reimbursement request = new Reimbursement();
+	public Set<Reimbursement> getByRequestor(Employee requestor) {
+		Set<Reimbursement> requests = new HashSet<>();
 		try (Connection conn = connUtil.getConnection()) {
 			String sql="select" + 
 					" req_id," + 
@@ -287,38 +326,58 @@ public class ReimbursementPostgres implements ReimbursementDAO {
 			
 			ResultSet resultSet = pStmt.executeQuery();
 			while (resultSet.next()) {
+
+				int rId = resultSet.getInt("req_id");
+				int eId = resultSet.getInt("emp_id");
+				LocalDate ld = resultSet.getDate("event_date").toLocalDate();
+				LocalTime lt = resultSet.getTime("event_time").toLocalTime();
+				String loc = resultSet.getString("location");
+				String desc = resultSet.getString("description");
+				double cost = resultSet.getDouble("cost");
+				int gfId = resultSet.getInt("grading_format_id");
+				String fn = resultSet.getString("format_name");
+				String fe = resultSet.getString("format_example");
+				int etId = resultSet.getInt("event_type_id");
+				String tn = resultSet.getString("type_name");
+				double pCov = resultSet.getDouble("percent_coverage");
+				int sId = resultSet.getInt("status_id");
+				String sn = resultSet.getString("status_name");
+				String approver = resultSet.getString("approver");
+				LocalDateTime ldt = resultSet.getTimestamp("submitted_at").toLocalDateTime();
+			
+				Reimbursement request = new Reimbursement();
 				
-				request.setReqId(resultSet.getInt("req_id"));
-				request.getRequestor().setEmpId(resultSet.getInt("emp_id"));
-				request.setEventDate(resultSet.getDate("event_date").toLocalDate());
-				request.setEventTime(resultSet.getTime("event_time").toLocalTime());
-				request.setLocation(resultSet.getString("location"));
-				request.setDescription(resultSet.getString("description"));
-				request.setCost(resultSet.getDouble("cost"));
+				request.setReqId(rId);
+				request.getRequestor().setEmpId(eId);
+				request.setEventDate(ld);
+				request.setEventTime(lt);
+				request.setLocation(loc);
+				request.setDescription(desc);
+				request.setCost(cost);
 				GradingFormat gf = new GradingFormat();
-				gf.setFormatId(resultSet.getInt("grading_format_id"));
-				gf.setName(resultSet.getString("format_name"));
-				gf.setExample(resultSet.getString("format_example"));
+				gf.setFormatId(gfId);
+				gf.setName(fn);
+				gf.setExample(fe);
 				request.setGradingFormat(gf);
 				EventType et = new EventType();
-				et.setEventId(resultSet.getInt("event_type_id"));
-				et.setName(resultSet.getString("type_name"));
-				et.setPercentCovered(resultSet.getDouble("percent_coverage"));
+				et.setEventId(etId);
+				et.setName(tn);
+				et.setPercentCovered(pCov);
 				request.setEventType(et);
 				Status s = new Status();
-				s.setStatusId(resultSet.getInt("status_id"));
-				s.setName(resultSet.getString("status_name"));
-				s.setApprover(resultSet.getString("approver"));
+				s.setStatusId(sId);
+				s.setName(sn);
+				s.setApprover(approver);
 				request.setStatus(s);
-				request.setSubmittedAt(resultSet.getTimestamp("submitted_at").toLocalDateTime());
-				
-				
+				request.setSubmittedAt(ldt);
+		
+				requests.add(request);
+				}
+			} catch (SQLException e) {
+				e.printStackTrace();
 			}
-		} catch (SQLException e) {
-			e.printStackTrace();
+			return requests;
 		}
-		return request;
-	}
 
 	@Override
 	public Set<Reimbursement> getByStatus(Status status) {

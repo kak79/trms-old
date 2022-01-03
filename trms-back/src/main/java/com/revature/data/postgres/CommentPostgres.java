@@ -6,10 +6,13 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.sql.Timestamp;
+import java.time.LocalDateTime;
 import java.util.HashSet;
 import java.util.Set;
 
 import com.revature.beans.Comment;
+import com.revature.beans.Employee;
+import com.revature.beans.Reimbursement;
 import com.revature.data.CommentDAO;
 import com.revature.utils.ConnectionUtil;
 
@@ -18,7 +21,7 @@ public class CommentPostgres implements CommentDAO {
 
 	@Override
 	public int create(Comment dataToAdd) {
-		int generatedId=0;
+		int generatedId=-1;
 		try (Connection conn = connUtil.getConnection()) {
 			conn.setAutoCommit(false);
 			String[] keys = {"comment_id"};
@@ -51,7 +54,7 @@ public class CommentPostgres implements CommentDAO {
 	
 	@Override
 	public Comment getById(int id) {
-		Comment comment = null;
+		Comment comment = new Comment();
 		try (Connection conn = connUtil.getConnection()) {
 			String sql = "select * from comment where comment_id=?";
 			PreparedStatement pStmt = conn.prepareStatement(sql);
@@ -60,12 +63,19 @@ public class CommentPostgres implements CommentDAO {
 			ResultSet resultSet = pStmt.executeQuery();
 			
 			if (resultSet.next()) {
-				comment = new Comment();
-				comment.setCommentId(id);
-				comment.setCommentText(resultSet.getString("comment_text"));
-				comment.getApprover().setEmpId(resultSet.getInt("approver_id"));
-				comment.getRequest().setReqId(resultSet.getInt("req_id"));
-				comment.setSentAt(resultSet.getTimestamp("sent_at").toLocalDateTime());
+				int cId = resultSet.getInt("comment_id");
+				String text = resultSet.getString("comment_text");
+				int aId = resultSet.getInt("approver_id");
+				int rId = resultSet.getInt("req_id");
+				LocalDateTime ts = resultSet.getTimestamp("sent_at").toLocalDateTime();
+				
+				comment.setCommentId(cId);
+				comment.setCommentText(text);
+				Employee emp = new Employee(aId);
+				comment.setApprover(emp);
+				Reimbursement req = new Reimbursement(rId);
+				comment.setRequest(req);
+				comment.setSentAt(ts);
 			}
 		
 		} catch (SQLException e) {
@@ -84,13 +94,21 @@ public class CommentPostgres implements CommentDAO {
 			ResultSet resultSet = stmt.executeQuery(sql);
 			
 			while (resultSet.next()) {
+				int id = resultSet.getInt("comment_id");
+				String text = resultSet.getString("comment_text");
+				int aId = resultSet.getInt("approver_id");
+				int rId = resultSet.getInt("req_id");
+				LocalDateTime ts = resultSet.getTimestamp("sent_at").toLocalDateTime();
+				
 				Comment comment = new Comment();
-				comment.setCommentId(resultSet.getInt("comment_id"));
-				comment.setCommentText(resultSet.getString("comment_text"));
-				comment.getApprover().setEmpId(resultSet.getInt("approver_id"));
-				comment.getRequest().setReqId(resultSet.getInt("req_id"));
-				comment.setSentAt(resultSet.getTimestamp("sent_at").toLocalDateTime());
-				System.out.println(comment);
+				comment.setCommentId(id);
+				comment.setCommentText(text);
+				Employee emp = new Employee(aId);
+				comment.setApprover(emp);
+				Reimbursement req = new Reimbursement(rId);
+				comment.setRequest(req);
+				comment.setSentAt(ts);
+				
 				comments.add(comment);
 			}
 		
@@ -111,12 +129,20 @@ public class CommentPostgres implements CommentDAO {
 			ResultSet resultSet = pStmt.executeQuery();
 			
 			while (resultSet.next()) {
+				int id = resultSet.getInt("comment_id");
+				String text = resultSet.getString("comment_text");
+				int aId = resultSet.getInt("approver_id");
+				int rId = resultSet.getInt("req_id");
+				LocalDateTime ts = resultSet.getTimestamp("sent_at").toLocalDateTime();
+				
 				Comment comment = new Comment();
-				comment.setCommentId(resultSet.getInt("comment_id"));
-				comment.setCommentText(resultSet.getString("comment_text"));
-				comment.getApprover().setEmpId(resultSet.getInt("approver_id"));
-				comment.getRequest().setReqId(resultSet.getInt("req_id"));
-				comment.setSentAt(resultSet.getTimestamp("sent_at").toLocalDateTime());
+				comment.setCommentId(id);
+				comment.setCommentText(text);
+				Employee emp = new Employee(aId);
+				comment.setApprover(emp);
+				Reimbursement req = new Reimbursement(rId);
+				comment.setRequest(req);
+				comment.setSentAt(ts);
 				
 				comments.add(comment);
 			}

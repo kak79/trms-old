@@ -10,9 +10,10 @@ import org.junit.jupiter.api.Test;
 
 import com.revature.beans.GradingFormat;
 import com.revature.data.postgres.GradingFormatPostgres;
+import com.revature.utils.DAOFactory;
 
 public class GradingFormatDaoTest {
-	private GradingFormatDAO gfd = new GradingFormatPostgres();
+	private GradingFormatDAO gfd = DAOFactory.getGradingFormatDAO();
 	
 	@BeforeEach
 	public void setup()
@@ -75,3 +76,14 @@ public class GradingFormatDaoTest {
 	
 
 }
+
+
+
+
+
+
+
+
+
+
+

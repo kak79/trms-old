@@ -17,11 +17,10 @@ public class Reimbursement {
 	private EventType eventType;
 	private Status status;
 	private LocalDateTime submittedAt;
-	private int empId;
 	
 	public Reimbursement() {
 		reqId=0;
-		requestor=new Employee(empId);
+		requestor=new Employee();
 		eventDate=null;
 		eventTime=null;
 		location="";
@@ -32,6 +31,15 @@ public class Reimbursement {
 		status = new Status();
 		submittedAt = LocalDateTime.now();
 	}
+
+	
+
+	public Reimbursement(int reqId) {
+		super();
+		this.reqId = reqId;
+	}
+
+
 
 	public int getReqId() {
 		return reqId;
