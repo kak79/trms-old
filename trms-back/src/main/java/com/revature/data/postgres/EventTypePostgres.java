@@ -39,8 +39,8 @@ public class EventTypePostgres implements EventTypeDAO {
 	}
 
 	@Override
-	public Set<EventType> getAll() {
-		Set<EventType> eventTypes = new HashSet<>();
+	public Set<Object> getAll() {
+		Set<Object> eventTypes = new HashSet<>();
 		try (Connection conn = connUtil.getConnection()) {
 			String sql = "select * from event_type";
 			Statement stmt = conn.createStatement();

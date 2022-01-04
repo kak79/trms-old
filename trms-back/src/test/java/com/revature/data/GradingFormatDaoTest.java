@@ -40,7 +40,7 @@ public class GradingFormatDaoTest {
 	@Test
 	public void getAllNotNull()
 	{
-		Set<GradingFormat> actual = gfd.getAll();
+		Set<Object> actual = gfd.getAll();
 		assertNotEquals(null, actual);
 	}
 	

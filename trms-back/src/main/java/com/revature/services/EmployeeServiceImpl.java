@@ -39,8 +39,8 @@ public class EmployeeServiceImpl implements EmployeeService {
 	@Override
 	public Map<String, Set<Object>> getRequestOptions() {
 		Map<String,Set<Object>> requestOptions = new HashMap<>();
-//		requestOptions.put("eventTypes", eventTypeDao.getAll());
-//		requestOptions.put("gradingFormats", gradFormatDao.getAll());
+		requestOptions.put("eventTypes", eventTypeDao.getAll());
+		requestOptions.put("gradingFormats", gradFormatDao.getAll());
 		return requestOptions;
 	}
 
@@ -58,7 +58,7 @@ public class EmployeeServiceImpl implements EmployeeService {
 		requests.forEach(req -> {
 			req.setRequestor(requestor);
 		});
-		return requests;
+		return requests; 
 	}
 
 	@Override

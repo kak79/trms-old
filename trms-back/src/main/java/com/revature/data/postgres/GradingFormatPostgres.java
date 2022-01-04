@@ -39,8 +39,8 @@ public class GradingFormatPostgres implements GradingFormatDAO {
 	}
 
 	@Override
-	public Set<GradingFormat> getAll() {
-		Set<GradingFormat> formats = new HashSet<>();
+	public Set<Object> getAll() {
+		Set<Object> formats = new HashSet<>();
 		try (Connection conn = connUtil.getConnection()) {
 			String sql = "select * from grading_format";
 			Statement stmt = conn.createStatement();

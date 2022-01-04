@@ -6,6 +6,6 @@ import com.revature.beans.EventType;
 
 public interface EventTypeDAO {
 	public EventType getById(int id);
-	public Set<EventType> getAll();
+	public Set<Object> getAll();
 	public EventType getByName(String name);
 }

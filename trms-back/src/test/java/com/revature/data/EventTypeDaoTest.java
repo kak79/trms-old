@@ -40,7 +40,7 @@ public class EventTypeDaoTest {
 	@Test
 	public void getAllNotNull()
 	{
-		Set<EventType> actual = etd.getAll();
+		Set<Object> actual = etd.getAll();
 		assertNotEquals(null, actual);
 	}
 	
