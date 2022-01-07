@@ -1,5 +1,84 @@
 html{
   font-family: fantasy;
   text-align: center;
-  background-color: rgb(93, 188, 171);
+  background-color: azure;
+}
+
+nav a {
+  color:darkcyan;
+}
+
+nav {
+  display:flex;
+  justify-content: space-around;
+  font-size:24pt;
+}
+
+#navLeft {
+  display: flex;
+  justify-content: space-around;
+  width:67%;
+}
+
+#navRight {
+  display: flex;
+  justify-content: right;
+  width:33%;
+}
+
+nav, main {
+  margin:.5em;
+  padding: 1em;
+  background-color:lightcyan ;
+}
+
+main {
+  font-size:16pt;
+}
+
+table,th,td {
+  font-size:16pt;
+  border:1px solid steelblue;
+  border-collapse: collapse;
+}
+
+th,td {
+  padding:.5em;
+}
+
+th {
+  border-width: 1px 1px 5px 1px;
+}
+
+tr:nth-child(1) {
+  background-color: #9bd4d2;
+}
+
+tr:nth-child(even) {
+  background-color: #bbebee;
+}
+
+button {
+  padding:.5em;
+  background-color: darkcyan;
+  color:white;
+  border-style: none;
+  font-family: fantasy;
+  border-radius: .75em;
+  font-size: 16pt;
+}
+
+button:hover {
+  color:#ccfffa;
+  background-color:indigo ;
+}
+
+#adopt3 {
+  background-color:blue;
+}
+
+.loginForm {
+  margin:.5em;
+  padding: 1em;
+  background-color:#ccf8ff;
 }

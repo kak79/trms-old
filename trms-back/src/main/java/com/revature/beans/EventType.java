@@ -12,6 +12,17 @@ public class EventType {
 		name="Other";
 		percentCovered=30.0;
 	}
+	
+	
+
+	public EventType(int eventId, String name, double percentCovered) {
+		super();
+		this.eventId = eventId;
+		this.name = name;
+		this.percentCovered = percentCovered;
+	}
+
+
 
 	public int getEventId() {
 		return eventId;

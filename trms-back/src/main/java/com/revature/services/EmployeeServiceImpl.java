@@ -19,16 +19,16 @@ import com.revature.exceptions.WrongUsrnmPsswrdException;
 import com.revature.utils.DAOFactory;
 
 public class EmployeeServiceImpl implements EmployeeService {
-	private EventTypeDAO eventTypeDao = DAOFactory.getEventTypeDAO();
-	private GradingFormatDAO gradFormatDao = DAOFactory.getGradingFormatDAO();
-	private StatusDAO statusDao = DAOFactory.getStatusDAO();
-	private ReimbursementDAO reqDao = DAOFactory.getReimbursementDAO();
-	private CommentDAO commentDao = DAOFactory.getCommentDAO();
-	private EmployeeDAO empDao = DAOFactory.getEmployeeDAO();
+	private CommentDAO cd = DAOFactory.getCommentDAO();
+	private EmployeeDAO ed = DAOFactory.getEmployeeDAO();
+	private EventTypeDAO etd = DAOFactory.getEventTypeDAO();
+	private GradingFormatDAO gfd = DAOFactory.getGradingFormatDAO();
+	private ReimbursementDAO rd = DAOFactory.getReimbursementDAO();
+	private StatusDAO sd = DAOFactory.getStatusDAO();
 
 	@Override
 	public Employee logIn(String username, String password) throws WrongUsrnmPsswrdException{
-		Employee emp = empDao.getByUsername(username);
+		Employee emp = ed.getByUsername(username);
 		if (emp != null && emp.getPassword().equals(password)) {
 			return emp;
 		} else {
@@ -39,22 +39,30 @@ public class EmployeeServiceImpl implements EmployeeService {
 	@Override
 	public Map<String, Set<Object>> getRequestOptions() {
 		Map<String,Set<Object>> requestOptions = new HashMap<>();
-		requestOptions.put("eventTypes", eventTypeDao.getAll());
-		requestOptions.put("gradingFormats", gradFormatDao.getAll());
+		requestOptions.put("eventTypes", etd.getAll());
+		requestOptions.put("gradingFormats", gfd.getAll());
 		return requestOptions;
 	}
 
 	@Override
 	public int submitReimbursementRequest(Reimbursement request) {
-		Status initialStatus = statusDao.getById(1);
+		Status initialStatus;
+		if (request.getRequestor().getRole().getRoleId()==1) {
+			initialStatus = sd.getById(1);
+		} else if (request.getRequestor().getRole().getRoleId()==2 || 
+				request.getRequestor().getRole().getRoleId()==4) {
+			initialStatus = sd.getById(4);
+		} else {
+			initialStatus = sd.getById(7);
+		}
 		request.setStatus(initialStatus);
 		request.setSubmittedAt(LocalDateTime.now());
-		return reqDao.create(request);
+		return rd.create(request);
 	}
 
 	@Override
 	public Set<Reimbursement> getReimbursementRequests(Employee requestor) {
-		Set<Reimbursement> requests = reqDao.getByRequestor(requestor);
+		Set<Reimbursement> requests = rd.getByRequestor(requestor);
 		requests.forEach(req -> {
 			req.setRequestor(requestor);
 		});
@@ -63,9 +71,9 @@ public class EmployeeServiceImpl implements EmployeeService {
 
 	@Override
 	public Set<Comment> getComments(Reimbursement request) {
-		Set<Comment> comments = commentDao.getByRequestId(request.getReqId());
+		Set<Comment> comments = cd.getByRequestId(request.getReqId());
 		comments.forEach(comment -> {
-			comment.setApprover(empDao.getById(comment.getApprover().getEmpId()));
+			comment.setApprover(ed.getById(comment.getApprover().getEmpId()));
 			comment.setRequest(request);
 		});
 		return comments;
@@ -74,12 +82,12 @@ public class EmployeeServiceImpl implements EmployeeService {
 	@Override
 	public int addComment(Comment comment) {
 		comment.setSentAt(LocalDateTime.now());
-		return commentDao.create(comment);
+		return cd.create(comment);
 	}
 
 	@Override
 	public Employee getEmployeeById(int empId) {
-		return empDao.getById(empId);
+		return ed.getById(empId);
 	}
 
 }

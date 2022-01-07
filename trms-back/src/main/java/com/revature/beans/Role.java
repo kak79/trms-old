@@ -11,16 +11,16 @@ public class Role {
 		name="User";
 	}
 	
-	
-	
-
 	public Role(int roleId) {
 		super();
 		this.roleId = roleId;
 	}
 
-
-
+	public Role(int roleId, String name) {
+		super();
+		this.roleId = roleId;
+		this.name = name;
+	}
 
 	public int getRoleId() {
 		return roleId;

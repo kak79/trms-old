@@ -15,3 +15,26 @@ join event_type et on r.event_type_id=et.type_id
 join status s on r.status_id=s.status_id
 where req_id=4
 
+select * from reimbursement where req_id = 4;
+
+select * from reimbursement where emp_id = 14;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

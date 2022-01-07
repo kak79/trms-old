@@ -20,9 +20,12 @@ import com.revature.beans.GradingFormat;
 import com.revature.beans.Reimbursement;
 import com.revature.beans.Status;
 import com.revature.data.ReimbursementDAO;
+import com.revature.data.StatusDAO;
 import com.revature.utils.ConnectionUtil;
+import com.revature.utils.DAOFactory;
 
 public class ReimbursementPostgres implements ReimbursementDAO {
+	private StatusDAO sd = DAOFactory.getStatusDAO();
 	private ConnectionUtil connUtil = ConnectionUtil.getConnectionUtil();
 
 	@Override
@@ -442,6 +445,32 @@ public class ReimbursementPostgres implements ReimbursementDAO {
 			e.printStackTrace();
 		}
 		return requests;
+	}
+
+	@Override
+	public Set<Reimbursement> getPendByApprover(Employee approver, int s) {
+		Set<Reimbursement> pendReqs = new HashSet<>();
+		if (s==1) {
+			pendReqs = getStatusId(s);
+		}else if (s==4) {
+			pendReqs = getStatusId(s);
+		}else if (s==7) {
+			pendReqs = getStatusId(s);
+		}
+
+		Set<Reimbursement> approverReqs = new HashSet<>();
+		pendReqs.forEach(req -> {
+			if(approver.getEmpId() == req.getRequestor().getSupervisor().getEmpId()) {
+				approverReqs.add(req);
+			}
+		});
+		return pendReqs;
+	}
+	
+	private Set<Reimbursement> getStatusId(int s){
+		Status s1 = sd.getById(s);
+		Set<Reimbursement> pendReqs = this.getByStatus(s1);
+		return pendReqs;
 	}
 
 }
