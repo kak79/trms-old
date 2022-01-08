@@ -19,15 +19,15 @@ public class TRMSApp {
 		
 		app.start();
 		
-		app.before("/requests/*", ctx -> {
-			if (!ctx.method().equals("OPTIONS")) {
-				ctx.header("Access-Control-Allow-Headers", "Token");
-			    ctx.header("Access-Control-Expose-Headers", "Token");
-				
-				String token = ctx.header("Token");
-				if (token==null) ctx.status(HttpCode.UNAUTHORIZED);
-			}	
-		});
+//		app.before("/reqs/*", ctx -> {
+//			if (!ctx.method().equals("OPTIONS")) {
+//				ctx.header("Access-Control-Allow-Headers", "Token");
+//			    ctx.header("Access-Control-Expose-Headers", "Token");
+//				
+//				String token = ctx.header("Token");
+//				if (token==null) ctx.status(HttpCode.UNAUTHORIZED);
+//			}	
+//		});
 		
 		
 		app.routes(() -> {
@@ -46,7 +46,7 @@ public class TRMSApp {
 			});
 			
 			
-			path("/requests", () -> {
+			path("/reqs", () -> {
 				
 				
 				

@@ -1,15 +1,32 @@
 package com.revature.controllers;
 
+import java.util.Set;
+
+import org.apache.logging.log4j.LogManager;
+
 import com.revature.beans.Employee;
 import com.revature.beans.Reimbursement;
+import com.revature.data.EmployeeDAO;
+import com.revature.data.ReimbursementDAO;
+import com.revature.exceptions.NoRequestsForRequestorException;
 import com.revature.services.EmployeeService;
 import com.revature.services.EmployeeServiceImpl;
+import com.revature.services.ReqReviewServImp;
+import com.revature.services.RequestReviewService;
+import com.revature.utils.DAOFactory;
 
 import io.javalin.http.Context;
 import io.javalin.http.HttpCode;
 
 public class RequestsController {
-	private static EmployeeService empServ = new EmployeeServiceImpl();
+	private static ReimbursementDAO rd = DAOFactory.getReimbursementDAO();
+	private static EmployeeDAO ed = DAOFactory.getEmployeeDAO();
+	private static RequestReviewService rs = new ReqReviewServImp();
+	private static EmployeeService es = new EmployeeServiceImpl();
+	private static Employee emp = new Employee();
+	private static Reimbursement req = new Reimbursement();
+	private static org.apache.logging.log4j.Logger log = LogManager.getLogger(RequestsController.class);
+
 	
 	/**
 	 * Retrieves the submitted reimbursement request from the
@@ -29,7 +46,7 @@ public class RequestsController {
 	 */
 	public static void submitReimbursementRequest(Context ctx) {
 		Reimbursement request = ctx.bodyAsClass(Reimbursement.class);
-		int reqId = empServ.submitReimbursementRequest(request);
+		int reqId = es.submitReimbursementRequest(request);
 		if (reqId != 0) {
 			ctx.status(HttpCode.CREATED);
 			request.setReqId(reqId);
@@ -63,10 +80,10 @@ public class RequestsController {
 		
 		try {
 			int requestorId = Integer.valueOf(requestorIdStr);
-			Employee requestor = empServ.getEmployeeById(requestorId);
+			Employee requestor = es.getEmployeeById(requestorId);
 			
 			if (requestor != null) {
-				ctx.json(empServ.getReimbursementRequests(requestor));
+				ctx.json(es.getReimbursementRequests(requestor));
 			} else {
 				ctx.status(404);
 				ctx.result("The user you specified does not exist.");
@@ -76,4 +93,44 @@ public class RequestsController {
 			ctx.result("Requestor ID must be an integer. Please try again.");
 		}
 	}
+	
+//	public static void getAllReqsByRequestor(Context ctx) {
+//		
+//		log.info("employee is getting all his/her reimbursement requests");
+//	
+//		String username = ctx.queryParam("username");
+//		log.debug("username value: " + username);
+//		
+//		if (username != null && !"".equals(username)) {
+//			try {
+//				Employee emp = ed.getByUsername(username);
+//				Set<Reimbursement> reqs = es.getReimbursementRequests(emp);
+//				ctx.json(reqs);
+//			}catch (Exception e) {
+//				String ex = "Employee has no Tuition Reimbursement Requests.";
+//				ctx.json(ex);
+//			}
+//		
+//		} else {
+//			String err = "Username is empty.";
+//			ctx.json(err);
+//		}	
+//		
+//		
+//		
+//		
+//		
+//		
+//		
+//		es.getReimbursementRequests(emp);
+//	}
+//	
+	
+	
+	
+	
+	
+	
+	
+	
 }

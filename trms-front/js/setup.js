@@ -31,7 +31,6 @@ function setupNav() {
 
     if (!loggedInPerson) {
         nav.innerHTML = `<span id="navLeft">
-        <a hidden>All Requests</a>
         <a href="index.html">TRMS</a>
         <a hidden>My Submitted Requests</a>
         </span>
@@ -42,9 +41,8 @@ function setupNav() {
         document.getElementById('login').addEventListener('click',openLogin);
     } else if (loggedInPerson.role.name !== 'Supervisor') {
         nav.innerHTML = `<span id="navLeft">
-        <a hidden>All Requests</a>
         <a href="index.html">TRMS</a>
-        <a href="#">My Submitted Requests</a>
+        <a href="myreqs.html">My Submitted Requests</a>
         </span>
         <span id="navRight">
         <a id="manageEmployee" href="manage.html">${loggedInPerson.username}</a>
@@ -54,13 +52,12 @@ function setupNav() {
         document.getElementById('logout').addEventListener('click',logOut);
     } else {
         nav.innerHTML = `<span id="navLeft">
-        <a href="reqs.html">All Requests</a>
         <a href="index.html">TRMS</a>
-        <a href="#">My Submitted Requests</a>
-        <a href="admin.html">Requests to Approve</a>
+        <a href="myreqs.html">My Submitted Requests</a>
+        <a href="approvreqs.html">Requests to Approve</a>
         </span>
         <span id="navRight">
-        <a id="manageUser" href="manage.html">${loggedInPerson.username}</a>
+        <a id="manageEmployee" href="manage.html">${loggedInPerson.username}</a>
         <button id="logout">Log Out</button>
         </span>`;
 

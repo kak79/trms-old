@@ -200,7 +200,7 @@ VALUES
 (10, 43, 'Approved', '2:21 AM'),				-- role = 1
 (14, 43, 'Approved', '3:16 AM'),				-- role = 2
 (15, 43, 'Approved', '9:30 PM'),				-- role = 1
-(17, 43, 'Approved', '3:45 AM'),				-- role = 1
+(17, 43, 'Approved', '3:45 AM');				-- role = 1
 
 
 

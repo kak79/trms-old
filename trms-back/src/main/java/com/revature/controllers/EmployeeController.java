@@ -6,18 +6,25 @@ import java.util.Set;
 import org.apache.logging.log4j.LogManager;
 
 import com.revature.beans.Employee;
+import com.revature.beans.Reimbursement;
 import com.revature.data.EmployeeDAO;
+import com.revature.data.ReimbursementDAO;
 import com.revature.services.EmployeeService;
 import com.revature.services.EmployeeServiceImpl;
+import com.revature.services.ReqReviewServImp;
+import com.revature.services.RequestReviewService;
 import com.revature.utils.DAOFactory;
 
 import io.javalin.http.Context;
 import io.javalin.http.HttpCode;
 
 public class EmployeeController {
+	private static ReimbursementDAO rd = DAOFactory.getReimbursementDAO();
 	private static EmployeeDAO ed = DAOFactory.getEmployeeDAO();
+	private static RequestReviewService rs = new ReqReviewServImp();
 	private static EmployeeService es = new EmployeeServiceImpl();
 	private static Employee emp = new Employee();
+	private static Reimbursement req = new Reimbursement();
 	
 	private static org.apache.logging.log4j.Logger log = LogManager.getLogger(EmployeeController.class);
 	
