@@ -19,7 +19,7 @@ public class TRMSApp {
 		
 		app.start();
 		
-		app.before("/*", ctx ->{
+		app.before("/requests/*", ctx -> {
 			if (!ctx.method().equals("OPTIONS")) {
 				ctx.header("Access-Control-Allow-Headers", "Token");
 			    ctx.header("Access-Control-Expose-Headers", "Token");

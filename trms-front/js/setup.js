@@ -31,10 +31,9 @@ function setupNav() {
 
     if (!loggedInPerson) {
         nav.innerHTML = `<span id="navLeft">
-        <a hidden><b>Requests to Approve</b></a>
-        <span><u>TRMS</u></span>
+        <a hidden>All Requests</a>
+        <a href="index.html">TRMS</a>
         <a hidden>My Submitted Requests</a>
-        <a hidden>My Pets</a>
         </span>
         <span id="navRight">
         <button id="login">Log In</button>
@@ -43,10 +42,9 @@ function setupNav() {
         document.getElementById('login').addEventListener('click',openLogin);
     } else if (loggedInPerson.role.name !== 'Supervisor') {
         nav.innerHTML = `<span id="navLeft">
-        <a hidden><b>Requests to Approve</b></a>
-        <span><u>TRMS</u></span>
-        <a hidden>My Submitted Requests</a>
-        <a hidden>My Pets</a>
+        <a hidden>All Requests</a>
+        <a href="index.html">TRMS</a>
+        <a href="#">My Submitted Requests</a>
         </span>
         <span id="navRight">
         <a id="manageEmployee" href="manage.html">${loggedInPerson.username}</a>
@@ -56,11 +54,10 @@ function setupNav() {
         document.getElementById('logout').addEventListener('click',logOut);
     } else {
         nav.innerHTML = `<span id="navLeft">
-        <a href="index.html"><b>PetApp</b></a>
-        <span>&#128062;</span>
-        <a href="pets.html">Available Pets</a>
-        <a href="myreqs.html">My Pets</a>
-        <a href="admin.html">Admin</a>
+        <a href="reqs.html">All Requests</a>
+        <a href="index.html">TRMS</a>
+        <a href="#">My Submitted Requests</a>
+        <a href="admin.html">Requests to Approve</a>
         </span>
         <span id="navRight">
         <a id="manageUser" href="manage.html">${loggedInPerson.username}</a>
