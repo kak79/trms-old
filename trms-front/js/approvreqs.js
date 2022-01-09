@@ -1,6 +1,6 @@
-getMySubmittedReqs();
+getApproverReqs();
 
-async function getMySubmittedReqs() {
+async function getApproverReqs() {
     let empId = localStorage.getItem('Token');
     let response = await fetch(appUrl + 'reqs/approver/' + empId);
     let response2 = await fetch(appUrl + 'employees/' );       
@@ -84,7 +84,14 @@ function showReqs(reqs, emps) {
                 let column = document.createElement('td');
                 column.innerText = (sub);
                 rowForReqs.appendChild(column);
-            }else{
+            }
+            // else if (field == 'updateStatus'){
+            //     let column = document.createElement('td');
+            //     column.innerHTML=`<button id="approve${req.id}">Approve</button>`;
+            //     rowForReqs.appendChild(column);
+            //     // column.innerHTML=`<button id="deny${req.id}">Deny</button>`;
+            // }
+            else{
                 let column = document.createElement('td');
                 column.innerText = req[field];
                 rowForReqs.appendChild(column);

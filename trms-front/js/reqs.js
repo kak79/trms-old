@@ -1,4 +1,4 @@
-
+getReqsAndEmps();
 
 async function getReqsAndEmps() {
     let response1 = await fetch(appUrl + 'reqs/');
@@ -99,4 +99,3 @@ function showReqs(reqs, emps) {
 
 
 
-getReqsAndEmps();
