@@ -1,26 +1,30 @@
 <html>
     <head>
-        <title>PetApp | Available Pets</title>
+        <title>TRMS | Request Reimbursements to Approve</title>
         <link rel="stylesheet" href="../css/main.css">
         <script defer src="../js/setup.js"></script>
-        <script defer src="../js/reqs.js"></script>
+        <script defer src="../js/approvreqs.js"></script>
     </head>
     <body>
         <nav id="nav">
         </nav>
         <main>
-            <h3>All Submitted Reimbursement Requests Sorted By Employee Id</h3>
-            <br><br>
-            
-            <table id="availablePets">
+            <h3>Reimbursements to be Approved</h3>
+            <p>These are the Reimbursements that you need to Approve or Deny.</p>
+            <table id="approverReqs">
                 <tr>
-                    <th>ID</th>
-                    <th>Name</th>
-                    <th>Species</th>
+                    <th>Reimbursement ID</th>
+                    <th>Employee ID</th>
+                    <th>Employee Name</th>
+                    <th>Date</th>
+                    <th>Time</th>
+                    <th>Location</th>
                     <th>Description</th>
-                    <th>Age</th>
-                    <th></th>
-                </tr>
+                    <th>Cost</th>
+                    <th>Grading Format</th>
+                    <th>Event Type</th>
+                    <th>Status</th>
+                    <th>Submitted at</th>                </tr>
             </table>
         </main>
         <footer id="footer">

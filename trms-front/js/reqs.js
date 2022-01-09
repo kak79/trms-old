@@ -1,20 +1,44 @@
-getMySubmittedReqs();
-
-async function getMySubmittedReqs() {
-    let response = await fetch(appUrl + 'reqs/approver/' + 3);    
-    if (response.status === 200) {
-        let reqs = await response.json();
-        console.log(reqs);
-        showReqs(reqs);
-    }
+class Reimbursement {
+    connstructor(reqId, empId, eventDate, eventTime, location,
+        description, cost, gradingFormatId, gradingFormatName, gradingFormatExample, eventTypeId, eventTypeName, CostCoverage, statusId, statusName, submittedAt) {
+    this.reqId = reqId;
+    this.empId = empId;
+    this.eventDate = eventDate;
+    this.eventTime = eventTime;
+    this.location = location;
+    this.description = description;
+    this.cost = cost;
+    this.gradingFormatId = gradingFormatId;
+    this.gradingFormatName = gradingFormatName;
+    this.gradingFormatExample = gradingFormatExample;
+    this.eventTypeId = eventTypeId;
+    this.eventTypeName = eventTypeName;
+    this.CostCoverage = CostCoverage;
+    this.statusId = statusId;
+    this.statusName = statusName;
+    this.submittedAt = submittedAt;
 }
 
 
 
+}
+
+
+
+
+
+async function getReqs() {
+    let response = await fetch(appUrl + 'reqs/');    
+    if (response.status === 200) {
+        let reqs = await response.json();
+        showReqs(reqs);
+    }
+}
+
 function showReqs(reqs) {
-    document.getElementById('approverReqs') 
+    document.getElementById('allReqs') 
     
-        let requestsTable = document.getElementById('approverReqs');
+        let requestsTable = document.getElementById('allReqs');
       let i = 0;
    
     for (let req of reqs) 
@@ -86,3 +110,8 @@ function showReqs(reqs) {
          
     }
 }
+
+
+
+
+getReqs();

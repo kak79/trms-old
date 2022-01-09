@@ -21,20 +21,15 @@ select * from reimbursement where emp_id = 14;
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+SELECT 
+req_id, emp_id, event_date, event_time, location,
+description, cost, grading_format_id, format_name, 
+example AS format_example, 
+event_type_id, type_name, percent_coverage,
+r.status_id, status_name, approver, submitted_at  
+FROM reimbursement r
+JOIN grading_format gf ON r.grading_format_id=gf.format_id 
+JOIN event_type et ON r.event_type_id=et.type_id 
+JOIN status s ON r.status_id=s.status_id
+WHERE status_id=1;
 

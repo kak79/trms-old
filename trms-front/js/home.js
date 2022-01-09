@@ -1,13 +1,11 @@
 let mainDiv = document.getElementById('info');
-
-if (loggedInPerson) {
-    mainDiv.innerHTML = `<h3>Welcome, ${loggedInPerson.fullName}!</h3>
-    <p>As . Here's a guide to what you can do here: </p>
-    <ul>
-        <li>Looking to adopt a new friend? Try "Available Pets".</li>
-        <li>Want to give your pets some love? Try "My Pets".</li>
-        <li>Need to change some account information? Try clicking on your username.</li>
-    </ul>`;
-} else {
-    mainDiv.innerHTML = ``;
+function hiThereYall(){
+    if(!loggedInPerson){
+        openLogin();
+    }else if(loggedInPerson.role.roleId > 1) {
+        mainDiv.innerHTML = `<p>Hello Supervisor ${loggedInPerson.firstName} ${loggedInPerson.lastName}.  From here you can look at all Reimbursement Requests.  Do you have Requests to approve/deny?  Would you like to submit a request?  Look at your submitted requests.</p>`
+    }else {
+        mainDiv.innerHTML = `<p>Hello Employee ${loggedInPerson.firstName} ${loggedInPerson.lastName}.  From here you can look at all Reimbursement Requests.  Would you like to submit a request?  Look at your submitted requests.</p>`
+    }
 }
+hiThereYall()

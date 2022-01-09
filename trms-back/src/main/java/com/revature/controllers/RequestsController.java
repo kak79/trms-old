@@ -94,39 +94,45 @@ public class RequestsController {
 		}
 	}
 	
-//	public static void getAllReqsByRequestor(Context ctx) {
-//		
-//		log.info("employee is getting all his/her reimbursement requests");
+	public static void getAllReqs(Context ctx) {
+//		log.info("employee is getting all reimbursement requests");
 //	
 //		String username = ctx.queryParam("username");
 //		log.debug("username value: " + username);
-//		
+		
 //		if (username != null && !"".equals(username)) {
-//			try {
-//				Employee emp = ed.getByUsername(username);
-//				Set<Reimbursement> reqs = es.getReimbursementRequests(emp);
-//				ctx.json(reqs);
-//			}catch (Exception e) {
-//				String ex = "Employee has no Tuition Reimbursement Requests.";
-//				ctx.json(ex);
-//			}
-//		
+			Set<Reimbursement> reqs = rd.getAll();
+			ctx.json(reqs);
 //		} else {
 //			String err = "Username is empty.";
 //			ctx.json(err);
 //		}	
-//		
-//		
-//		
-//		
-//		
-//		
-//		
-//		es.getReimbursementRequests(emp);
-//	}
-//	
+	}
 	
+	public static void getRequestsByApprover(Context ctx) {
+		String approverIdStr = ctx.pathParam("id");
+		
+		try {
+			int approverId = Integer.valueOf(approverIdStr);
+			Employee approver = es.getEmployeeById(approverId);
+			int statusId = 1;
+			
+			if (approver != null) {
+				ctx.json(rs.getPendingReimbursements(approver, statusId));
+			} else {
+				ctx.status(404);
+				ctx.result("The user you specified does not exist.");
+			}
+		} catch (NumberFormatException e) {
+			ctx.status(400);
+			ctx.result("Requestor ID must be an integer. Please try again.");
+		}
+	}
 	
+	public static void updateARequest(Context ctx) {
+		
+		
+	}
 	
 	
 	
