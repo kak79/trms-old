@@ -31,5 +31,5 @@ FROM reimbursement r
 JOIN grading_format gf ON r.grading_format_id=gf.format_id 
 JOIN event_type et ON r.event_type_id=et.type_id 
 JOIN status s ON r.status_id=s.status_id
-WHERE status_id=1;
+WHERE r.status_id=1;
 

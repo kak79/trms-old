@@ -28,7 +28,7 @@ public class EmployeeController {
 	
 	private static org.apache.logging.log4j.Logger log = LogManager.getLogger(EmployeeController.class);
 	
-	public static void viewAllEmployees(Context ctx) {
+	public static void getAllEmps(Context ctx) {
 		
 		Set<Employee> emps = ed.getAll();
 		log.info("getting all of the employees");

@@ -45,7 +45,9 @@ public class RequestsController {
 	 * @param ctx Javalin's Context object representing the HTTP request and response
 	 */
 	public static void submitReimbursementRequest(Context ctx) {
+		System.out.println(ctx);
 		Reimbursement request = ctx.bodyAsClass(Reimbursement.class);
+		log.debug("getting the request submittion"+ request);
 		int reqId = es.submitReimbursementRequest(request);
 		if (reqId != 0) {
 			ctx.status(HttpCode.CREATED);

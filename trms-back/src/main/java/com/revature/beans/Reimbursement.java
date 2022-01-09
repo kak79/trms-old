@@ -10,7 +10,7 @@ public class Reimbursement {
 	private int reqId;
 	private Employee requestor;
 	private String eventDate;
-	private CharSequence eventTime;
+	private String eventTime;
 	private String location;
 	private String description;
 	private double cost;

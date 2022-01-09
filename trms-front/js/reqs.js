@@ -1,41 +1,16 @@
-class Reimbursement {
-    connstructor(reqId, empId, eventDate, eventTime, location,
-        description, cost, gradingFormatId, gradingFormatName, gradingFormatExample, eventTypeId, eventTypeName, CostCoverage, statusId, statusName, submittedAt) {
-    this.reqId = reqId;
-    this.empId = empId;
-    this.eventDate = eventDate;
-    this.eventTime = eventTime;
-    this.location = location;
-    this.description = description;
-    this.cost = cost;
-    this.gradingFormatId = gradingFormatId;
-    this.gradingFormatName = gradingFormatName;
-    this.gradingFormatExample = gradingFormatExample;
-    this.eventTypeId = eventTypeId;
-    this.eventTypeName = eventTypeName;
-    this.CostCoverage = CostCoverage;
-    this.statusId = statusId;
-    this.statusName = statusName;
-    this.submittedAt = submittedAt;
-}
 
 
-
-}
-
-
-
-
-
-async function getReqs() {
-    let response = await fetch(appUrl + 'reqs/');    
-    if (response.status === 200) {
-        let reqs = await response.json();
-        showReqs(reqs);
+async function getReqsAndEmps() {
+    let response1 = await fetch(appUrl + 'reqs/');
+    let response2 = await fetch(appUrl + 'employees/' );
+    if (response1.status === 200 && response2.status === 200) {
+        let reqs = await response1.json();
+        let emps = await response2.json();
+        showReqs(reqs, emps);
     }
 }
 
-function showReqs(reqs) {
+function showReqs(reqs, emps) {
     document.getElementById('allReqs') 
     
         let requestsTable = document.getElementById('allReqs');
@@ -43,6 +18,7 @@ function showReqs(reqs) {
    
     for (let req of reqs) 
     {
+        
         let status = (reqs[i].status);
         stat = (status.statusId + ': ' + status.name);
         let eventType = (reqs[i].eventType);
@@ -63,16 +39,25 @@ function showReqs(reqs) {
         let subHour = (req.submittedAt.hour);
         let subMinute = (req.submittedAt.minute);
         let sub = (subMonth + '/' + subDay + '/' + subYear + ' ' + subHour + ':' + subMinute);
-        let employees = (reqs[i].requestor);
+        let eId = (reqs[i].requestor.empId);
+        let fName;
+        let lName;
+        for (let emp of emps) {
+            if (eId == (emp.empId)){
+                fName = (emp.firstName);
+                lName = (emp.lastName);
+            }
+        }
+        let employee = (fName + " " + lName)
         let rowForReqs = document.createElement('tr');
         rowForReqs.setAttribute("id","req_row")
         for (let field in req) {
              if (field == 'requestor'){
             let column = document.createElement('td');
-            column.innerText = employees.empId;
+            column.innerText = eId;
             rowForReqs.appendChild(column);
             let column1 = document.createElement('td');
-            column1.innerText = (employees.firstName +" " + employees.lastName);
+            column1.innerText = (employee);
             rowForReqs.appendChild(column1);
              }else if(field == 'eventDate'){ 
                 let column = document.createElement('td');
@@ -114,4 +99,4 @@ function showReqs(reqs) {
 
 
 
-getReqs();
+getReqsAndEmps();

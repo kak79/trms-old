@@ -31,6 +31,7 @@ function setupNav() {
 
     if (!loggedInPerson) {
         nav.innerHTML = `<span id="navLeft">
+        <a hidden>My Submitted Requests</a>
         <a href="index.html">TRMS</a>
         <a hidden>My Submitted Requests</a>
         </span>
@@ -41,6 +42,7 @@ function setupNav() {
         document.getElementById('login').addEventListener('click',openLogin);
     } else if (loggedInPerson.role.name !== 'Supervisor') {
         nav.innerHTML = `<span id="navLeft">
+        <a href="addreq.html">Add Request</a>
         <a href="index.html">TRMS</a>
         <a href="myreqs.html">My Submitted Requests</a>
         </span>
@@ -52,6 +54,7 @@ function setupNav() {
         document.getElementById('logout').addEventListener('click',logOut);
     } else {
         nav.innerHTML = `<span id="navLeft">
+        <a href="addreq.html">Add Request</a>
         <a href="index.html">TRMS</a>
         <a href="myreqs.html">My Submitted Requests</a>
         <a href="approvreqs.html">Requests to Approve</a>

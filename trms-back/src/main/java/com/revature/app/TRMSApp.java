@@ -29,7 +29,7 @@ public class TRMSApp {
 		app.routes(() -> {
 			
 			path("/employees", () -> {
-				
+				get(EmployeeController::getAllEmps);
 				path("/auth", () -> {
 					post(EmployeeController::logIn); // login
 				});

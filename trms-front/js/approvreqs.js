@@ -1,17 +1,18 @@
 getMySubmittedReqs();
 
 async function getMySubmittedReqs() {
-    let response = await fetch(appUrl + 'reqs/approver/' + 3);    
-    if (response.status === 200) {
+    let empId = localStorage.getItem('Token');
+    let response = await fetch(appUrl + 'reqs/approver/' + empId);
+    let response2 = await fetch(appUrl + 'employees/' );       
+    if (response.status === 200 && response2.status === 200) {
         let reqs = await response.json();
-        console.log(reqs);
-        showReqs(reqs);
+        let emps = await response2.json();
+        showReqs(reqs, emps);    
     }
 }
 
 
-
-function showReqs(reqs) {
+function showReqs(reqs, emps) {
     document.getElementById('approverReqs') 
     
         let requestsTable = document.getElementById('approverReqs');
@@ -39,16 +40,25 @@ function showReqs(reqs) {
         let subHour = (req.submittedAt.hour);
         let subMinute = (req.submittedAt.minute);
         let sub = (subMonth + '/' + subDay + '/' + subYear + ' ' + subHour + ':' + subMinute);
-        let employees = (reqs[i].requestor);
+        let eId = (reqs[i].requestor.empId);
+        let fName;
+        let lName;
+        for (let emp of emps) {
+            if (eId == (emp.empId)){
+                fName = (emp.firstName);
+                lName = (emp.lastName);
+            }
+        }
+        let employee = (fName + " " + lName)
         let rowForReqs = document.createElement('tr');
         rowForReqs.setAttribute("id","req_row")
         for (let field in req) {
              if (field == 'requestor'){
             let column = document.createElement('td');
-            column.innerText = employees.empId;
+            column.innerText = eId;
             rowForReqs.appendChild(column);
             let column1 = document.createElement('td');
-            column1.innerText = (employees.firstName +" " + employees.lastName);
+            column1.innerText = (employee);
             rowForReqs.appendChild(column1);
              }else if(field == 'eventDate'){ 
                 let column = document.createElement('td');
