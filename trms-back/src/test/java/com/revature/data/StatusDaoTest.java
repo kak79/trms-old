@@ -14,78 +14,57 @@ import com.revature.utils.DAOFactory;
 
 public class StatusDaoTest {
 	private StatusDAO sd = DAOFactory.getStatusDAO();
-	
-	
+
 	@BeforeEach
-	public void setup()
-	{
+	public void setup() {
 		sd = new StatusPostgres();
 	}
-	
+
 	@Test
-	public void getByIdNotNull()
-	{
+	public void getByIdNotNull() {
 		Status actual = sd.getById(1);
 		assertNotEquals(null, actual);
 	}
-	
+
 	@Test
-	public void getByIdValidStatus()
-	{
+	public void getByIdValidStatus() {
 		String expected = "Pending Approval";
 		Status one = sd.getById(1);
 		String actual = one.getName();
 		assertEquals(expected, actual);
 	}
-	
+
 	@Test
-	public void getAllNotNull()
-	{
+	public void getAllNotNull() {
 		Set<Status> actual = sd.getAll();
 		assertNotEquals(null, actual);
 	}
-	
+
 	@Test
-	public void getByNameNotNull()
-	{
+	public void getByNameNotNull() {
 		String name = "Pending Approval";
 		Status actual = sd.getByName(name);
 		assertNotEquals(null, actual);
 	}
-	
-	
+
 	@Test
-	public void getByNameValidStatus()
-	{
+	public void getByNameValidStatus() {
 		String expected = "Pending Approval";
 		Status gf = sd.getByName(expected);
 		String actual = gf.getName();
 		assertEquals(expected, actual);
 	}
-	
-	
+
 	@Test
-	public void getByNameInvalidStatus()
-	{
+	public void getByNameInvalidStatus() {
 		String expected = "PA";
 		String real = "Pending Approval";
 		Status gf = sd.getByName(real);
 		String actual = gf.getName();
 		assertNotEquals(expected, actual);
 	}
-		
-	
 
 }
-
-
-
-
-
-
-
-
-
 
 //private EventTypeDAO eventTypeDao = DAOFactory.getEventTypeDAO();
 //private GradingFormatDAO gradFormatDao = DAOFactory.getGradingFormatDAO();
@@ -93,8 +72,3 @@ public class StatusDaoTest {
 //private ReimbursementDAO reqDao = DAOFactory.getReimbursementDAO();
 //private CommentDAO commentDao = DAOFactory.getCommentDAO();
 //private EmployeeDAO empDao = DAOFactory.getEmployeeDAO();
-
-
-
-
-

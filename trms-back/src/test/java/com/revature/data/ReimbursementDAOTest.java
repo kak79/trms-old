@@ -19,8 +19,8 @@ import com.revature.utils.DAOFactory;
 public class ReimbursementDaoTest {
 	private ReimbursementDAO rd = DAOFactory.getReimbursementDAO();
 	private EmployeeDAO ed = DAOFactory.getEmployeeDAO();
-	
-	@Test   
+
+	@Test
 	public void createTest() {
 		GradingFormat gf = new GradingFormat();
 		EventType et = new EventType();
@@ -37,19 +37,15 @@ public class ReimbursementDaoTest {
 		create.setStatus(st);
 		assertNotEquals(0, rd.create(create));
 	}
-	
-	
+
 	@Test
-	public void getByIdNotNull()
-	{
+	public void getByIdNotNull() {
 		Reimbursement actual = rd.getById(1);
 		assertNotEquals(null, actual);
 	}
-	
-	
+
 	@Test
-	public void getByIdValidReimbursement()
-	{
+	public void getByIdValidReimbursement() {
 		String expected = "2021-07-18 03:44:44";
 		Reimbursement one = rd.getById(4);
 		LocalDate d = one.getEventDate();
@@ -59,37 +55,32 @@ public class ReimbursementDaoTest {
 		String actual = d + " " + t;
 		assertEquals(expected, actual);
 	}
-	
+
 	@Test
-	public void getAllNotNull()
-	{
+	public void getAllNotNull() {
 		Set<Reimbursement> actual = rd.getAll();
 		assertNotEquals(null, actual);
 	}
-	
+
 	@Test
-	public void getByRequestorNotNull() 
-	{
+	public void getByRequestorNotNull() {
 		Employee expected = ed.getById(14);
 		Set<Reimbursement> actual = rd.getByRequestor(expected);
 		assertNotEquals(null, actual);
 	}
-	
-	
+
 	@Test
-	public void getReimbursementByValidRequestor()
-	{
+	public void getReimbursementByValidRequestor() {
 		Employee expected = ed.getById(14);
 		Set<Reimbursement> reqs = rd.getByRequestor(expected);
-		Employee actual = new Employee(); 
+		Employee actual = new Employee();
 		for (Reimbursement req : reqs) {
 			actual = req.getRequestor();
 		}
-		
+
 		assertEquals(expected.getEmpId(), actual.getEmpId());
 	}
-	
-	
+
 //	@Test
 //	public void getReimbursementByInvalidRequestor()
 //	{
@@ -99,24 +90,6 @@ public class ReimbursementDaoTest {
 //		Employee actual = req.getRequestor();
 //		assertNotEquals(expected, actual);
 //	}
-//	
-	
-	
-	
+//
 
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

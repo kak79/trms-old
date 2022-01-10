@@ -1,18 +1,9 @@
 "use strict";
 
-// global variables to be referenced in other scripts
 let appUrl = 'http://localhost:8080/';
 let loggedInPerson;
-
-// async functions implicitly return promises, so you
-// can set a callback function for after the promise/function
-// is resolved. here, i'm having the "setupNav" be called
-// after checkLogin resolves.
 checkLogin().then(setupNav);
 
-// this checks if someone is currently logged in in the
-// browser session (local storage) then retrieves their info
-// before setting up the page
 async function checkLogin() {
     let empId = localStorage.getItem('Token');
     if (empId) {
@@ -22,10 +13,6 @@ async function checkLogin() {
         }
     }
 }
-
-// sets up the nav bar that appears on all pages
-// depending on whether the user is logged in and
-// what their role is
 function setupNav() {
     let nav = document.getElementById('nav');
 

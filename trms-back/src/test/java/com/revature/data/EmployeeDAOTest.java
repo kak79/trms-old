@@ -13,17 +13,14 @@ import com.revature.beans.Employee;
 import com.revature.data.postgres.EmployeePostgres;
 import com.revature.utils.DAOFactory;
 
-public class EmployeeDaoTest
-{
+public class EmployeeDaoTest {
 	private EmployeeDAO ed = DAOFactory.getEmployeeDAO();
-	
+
 	@BeforeEach
-	public void setup()
-	{
+	public void setup() {
 		ed = new EmployeePostgres();
 	}
-	
-	
+
 	@Test
 	public void createTest() {
 		Department it = new Department(1, "IT", 34);
@@ -33,65 +30,49 @@ public class EmployeeDaoTest
 		create.setSupervisor(sup);
 		assertNotEquals(0, ed.create(create));
 	}
-	
-	
+
 	@Test
-	public void getByIdNotNull()
-	{
+	public void getByIdNotNull() {
 		Employee actual = ed.getById(1);
 		assertNotEquals(null, actual);
 	}
-	
-	
+
 	@Test
-	public void getByIdValidEmployee()
-	{
+	public void getByIdValidEmployee() {
 		String expected = "emongan0";
 		Employee one = ed.getById(2);
 		String actual = one.getUsername();
 		assertEquals(expected, actual);
 	}
-	
+
 	@Test
-	public void getAllNotNull()
-	{
+	public void getAllNotNull() {
 		Set<Employee> actual = ed.getAll();
 		assertNotEquals(null, actual);
 	}
-	
-	public void getByUsernameNotNull()
-	{
+
+	public void getByUsernameNotNull() {
 		String expected = "emongan0";
 		Employee emp = ed.getByUsername(expected);
 		String actual = emp.getUsername();
 		assertNotEquals(null, actual);
 	}
-	
-	
+
 	@Test
-	public void getByUsernameValidEmployee()
-	{
+	public void getByUsernameValidEmployee() {
 		String expected = "emongan0";
 		Employee emp = ed.getByUsername(expected);
 		String actual = emp.getUsername();
 		assertEquals(expected, actual);
 	}
-	
-	
+
 	@Test
-	public void getByUsernameInvalidEmployee()
-	{
+	public void getByUsernameInvalidEmployee() {
 		String expected = "lksdjfoisd";
 		String real = "emongan0";
 		Employee emp = ed.getByUsername(real);
 		String actual = emp.getUsername();
 		assertNotEquals(expected, actual);
 	}
-	
+
 }
-
-
-
-
-
-

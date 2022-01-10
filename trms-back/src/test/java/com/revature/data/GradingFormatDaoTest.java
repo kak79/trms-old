@@ -14,76 +14,54 @@ import com.revature.utils.DAOFactory;
 
 public class GradingFormatDaoTest {
 	private GradingFormatDAO gfd = DAOFactory.getGradingFormatDAO();
-	
+
 	@BeforeEach
-	public void setup()
-	{
+	public void setup() {
 		gfd = new GradingFormatPostgres();
 	}
-	
+
 	@Test
-	public void getByIdNotNull()
-	{
+	public void getByIdNotNull() {
 		GradingFormat actual = gfd.getById(1);
 		assertNotEquals(null, actual);
 	}
-	
+
 	@Test
-	public void getByIdValidGradingFormat()
-	{
+	public void getByIdValidGradingFormat() {
 		String expected = "Pass/Fail";
 		GradingFormat one = gfd.getById(1);
 		String actual = one.getName();
 		assertEquals(expected, actual);
 	}
-	
+
 	@Test
-	public void getAllNotNull()
-	{
+	public void getAllNotNull() {
 		Set<Object> actual = gfd.getAll();
 		assertNotEquals(null, actual);
 	}
-	
+
 	@Test
-	public void getByNameNotNull()
-	{
+	public void getByNameNotNull() {
 		String name = "Pass/Fail";
 		GradingFormat actual = gfd.getByName(name);
 		assertNotEquals(null, actual);
 	}
-	
-	
+
 	@Test
-	public void getByNameValidGradingFormat()
-	{
+	public void getByNameValidGradingFormat() {
 		String expected = "Pass/Fail";
 		GradingFormat gf = gfd.getByName(expected);
 		String actual = gf.getName();
 		assertEquals(expected, actual);
 	}
-	
-	
+
 	@Test
-	public void getByNameInvalidGradingFormat()
-	{
+	public void getByNameInvalidGradingFormat() {
 		String expected = "P/F";
 		String real = "Pass/Fail";
 		GradingFormat gf = gfd.getByName(real);
 		String actual = gf.getName();
 		assertNotEquals(expected, actual);
 	}
-	
-	
 
 }
-
-
-
-
-
-
-
-
-
-
-

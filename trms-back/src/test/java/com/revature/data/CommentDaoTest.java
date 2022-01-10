@@ -16,13 +16,12 @@ import com.revature.utils.DAOFactory;
 
 public class CommentDaoTest {
 	private CommentDAO cd = DAOFactory.getCommentDAO();
-	
+
 	@BeforeEach
-	public void setup()
-	{
+	public void setup() {
 		cd = new CommentPostgres();
 	}
-		
+
 	@Test
 	public void createTest() {
 		Comment create = new Comment();
@@ -32,43 +31,31 @@ public class CommentDaoTest {
 		create.setApprover(approver);
 		assertNotEquals(0, cd.create(create));
 	}
-	
+
 	@Test
-	public void getByIdNotNull()
-	{
+	public void getByIdNotNull() {
 		Comment actual = cd.getById(1);
 		assertNotEquals(null, actual);
 	}
-	
+
 	@Test
-	public void getByIdValidComment()
-	{
+	public void getByIdValidComment() {
 		String expected = "Pending Approval";
 		Comment one = cd.getById(1);
 		String actual = one.getCommentText();
 		assertEquals(expected, actual);
 	}
-	
+
 	@Test
-	public void getAllNotNull()
-	{
+	public void getAllNotNull() {
 		Set<Comment> actual = cd.getAll();
 		assertNotEquals(null, actual);
 	}
-	
+
 	@Test
-	public void getByReqIdNotNull()
-	{
+	public void getByReqIdNotNull() {
 		Set<Comment> actual = cd.getByRequestId(1);
 		assertNotEquals(null, actual);
 	}
-	
 
-	
 }
-
-
-
-
-
-
