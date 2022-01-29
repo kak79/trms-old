@@ -6,7 +6,6 @@ The purpose of TRMS is to provide a system that encourages quality knowledge gro
 
 ## Technologies Used
 
--------------
 
 * AWS RDS PostgreSQL 12
 * Java 8
@@ -19,7 +18,6 @@ The purpose of TRMS is to provide a system that encourages quality knowledge gro
 
 ## Features
 
--------------
 
 List of features ready and TODOs for future development
 
@@ -39,8 +37,6 @@ To-do list:
 * Get Cucumber/Selenium tests running successfully
 
 ## Getting Started
-
-------------------
 
 
 
@@ -84,48 +80,42 @@ javac -version
 11. It should look something like this. <br><br> ![javaVersion](./javaVer.png)
 12. If there is no return value or the version number is below 8 go [here](https://www3.ntu.edu.sg/home/ehchua/programming/howto/JDK_Howto.html). Follow the instructions for your operating system.
 13. Next you will install PostgreSQL from [here](https://www.postgresqltutorial.com/install-postgresql/).  Follow the instructions for your operating system.
-14. 
-15. 
-16. 
-17. 
-18. 
-19. 
-20. 
-21. 
-22. 
-23. 
-24. 
-25. 
-26. 
-27. 
-28. 
-29. In step 9. you cloned the repository into your new folder TRMS.  Now that you have Java installed on your system, you are going to open the 
+14. Install Eclipse from [here](https://www.eclipse.org/downloads/packages/installer)
+15. Install DBeaver from [here](https://dbeaver.io/download/)
+- In step 9. you cloned the repository into your new folder TRMS.  Now that you have Java, Postgres, Eclipse, and VS Code installed on your system, you are going to populate your new SQL database and run the program.
+16. Open Eclipse IDE for Enterprise Developers
+17. Go to File -> Import -> Maven -> Existing Maven Projects
+18. Browse for trms-back
+19. Finish
+- The SQL scripts are in src/main/resources
+20. Open DBeaver
+21. Go to File -> New
+22. Select DBeaver -> Database Connection
+23. Select the PostgreSQL Blue Elephant
+24. Leave everything as it is
+25. Check the connection, if not connecting, troubleshoot.
+26. Finish
+27. Make a database.properties in src/main/resources that looks similar to this: <br><br> ![copy](./props.png) 
+28. Make a Schema called trms
+29. Right click on trms, go to SQL Editor -> Open SQL Console
+30. Copy the Script in DDL.sql into the SQL Console and run it.
+31. Repeat step 29. then Copy the DML.sql into the new console and run it.
+32. Expand src/main/java -> com.revature.app -> TRMSApp.java
+33. Right click on TRMSApp.java
+34. Select Run as -> Java Application <br><br> ![copy](./RunAs.png) <br><br> ![copy](./Javalin.png)
+35. Start the App by going to the directory that you placed the TRMS App into, navigating to trms-front -> html 
+36. Open index.html in a web browser of your choice
+37. You are ready to run the TRMS.
 
 
-
-
-
-
-
-
-
-
-
-
-
-(include git clone command) (include all environment setup steps)
-
-Be sure to include BOTH Windows and Unix command
-Be sure to mention if the commands only work on a specific platform (eg. AWS, GCP)
-
-All the code required to get started
-Images of what it should look like
-Usage
-Here, you instruct other people on how to use your project after they’ve installed it. This would also be a good place to include screenshots of your project in action.
 
 ## License
 
----------
+Copyright (c) 2021 Kim Kohel-Hayes
 
-This project uses the following license: <license_name>.
+Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the "Software"), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
