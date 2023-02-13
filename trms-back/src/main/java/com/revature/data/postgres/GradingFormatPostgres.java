@@ -8,8 +8,8 @@ import java.sql.Statement;
 import java.util.HashSet;
 import java.util.Set;
 
-import com.revature.beans.GradingFormat;
 import com.revature.data.GradingFormatDAO;
+import com.revature.models.GradingFormat;
 import com.revature.utils.ConnectionUtil;
 
 public class GradingFormatPostgres implements GradingFormatDAO {

@@ -1,24 +1,20 @@
-package com.revature.beans;
+package com.revature.models;
 
 import java.util.Objects;
 
 public class GradingFormat {
 	private int formatId;
-	private String name;
+	private String formatName;
 	private String example;
 	
 	public GradingFormat() {
-		formatId=4;
-		name="Other";
-		example="TBD";
+		super();
 	}
-	
-	
 
 	public GradingFormat(int formatId, String name, String example) {
 		super();
 		this.formatId = formatId;
-		this.name = name;
+		this.formatName = name;
 		this.example = example;
 	}
 
@@ -33,11 +29,11 @@ public class GradingFormat {
 	}
 
 	public String getName() {
-		return name;
+		return formatName;
 	}
 
 	public void setName(String name) {
-		this.name = name;
+		this.formatName = name;
 	}
 
 	public String getExample() {
@@ -50,7 +46,7 @@ public class GradingFormat {
 
 	@Override
 	public int hashCode() {
-		return Objects.hash(example, formatId, name);
+		return Objects.hash(example, formatId, formatName);
 	}
 
 	@Override
@@ -62,11 +58,11 @@ public class GradingFormat {
 		if (getClass() != obj.getClass())
 			return false;
 		GradingFormat other = (GradingFormat) obj;
-		return Objects.equals(example, other.example) && formatId == other.formatId && Objects.equals(name, other.name);
+		return Objects.equals(example, other.example) && formatId == other.formatId && Objects.equals(formatName, other.formatName);
 	}
 
 	@Override
 	public String toString() {
-		return "GradingFormat [formatId=" + formatId + ", name=" + name + ", example=" + example + "]";
+		return "GradingFormat [formatId=" + formatId + ", formatName=" + formatName + ", example=" + example + "]";
 	}
 }

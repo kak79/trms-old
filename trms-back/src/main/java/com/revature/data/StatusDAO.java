@@ -2,7 +2,7 @@ package com.revature.data;
 
 import java.util.Set;
 
-import com.revature.beans.Status;
+import com.revature.models.Status;
 
 public interface StatusDAO {
 	public Status getById(int id);

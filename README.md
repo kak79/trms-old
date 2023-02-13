@@ -6,6 +6,8 @@ The purpose of TRMS is to provide a system that encourages quality knowledge gro
 
 ## Technologies Used
 
+* Trello board -- https://trello.com/b/2C8dqvkW/trms
+
 
 * AWS RDS PostgreSQL 12
 * Java 8

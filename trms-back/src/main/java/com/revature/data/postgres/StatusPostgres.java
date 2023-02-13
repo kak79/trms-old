@@ -8,8 +8,8 @@ import java.sql.Statement;
 import java.util.HashSet;
 import java.util.Set;
 
-import com.revature.beans.Status;
 import com.revature.data.StatusDAO;
+import com.revature.models.Status;
 import com.revature.utils.ConnectionUtil;
 
 public class StatusPostgres implements StatusDAO {

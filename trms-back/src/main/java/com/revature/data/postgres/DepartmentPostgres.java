@@ -8,8 +8,8 @@ import java.sql.Statement;
 import java.util.HashSet;
 import java.util.Set;
 
-import com.revature.beans.Department;
 import com.revature.data.DepartmentDAO;
+import com.revature.models.Department;
 import com.revature.utils.ConnectionUtil;
 
 public class DepartmentPostgres implements DepartmentDAO {

@@ -1,4 +1,4 @@
-package com.revature.beans;
+package com.revature.models;
 
 import java.util.Objects;
 
@@ -8,9 +8,7 @@ public class Department {
 	private int deptHeadId;
 	
 	public Department() {
-		deptId = 0;
-		name = "";
-		deptHeadId = 0;
+		super();
 	}
 	
 	

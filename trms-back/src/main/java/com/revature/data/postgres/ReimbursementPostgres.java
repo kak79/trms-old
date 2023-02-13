@@ -14,13 +14,13 @@ import java.time.LocalTime;
 import java.util.HashSet;
 import java.util.Set;
 
-import com.revature.beans.Employee;
-import com.revature.beans.EventType;
-import com.revature.beans.GradingFormat;
-import com.revature.beans.Reimbursement;
-import com.revature.beans.Status;
 import com.revature.data.ReimbursementDAO;
 import com.revature.data.StatusDAO;
+import com.revature.models.Employee;
+import com.revature.models.EventType;
+import com.revature.models.GradingFormat;
+import com.revature.models.Reimbursement;
+import com.revature.models.Status;
 import com.revature.utils.ConnectionUtil;
 import com.revature.utils.DAOFactory;
 

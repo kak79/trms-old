@@ -8,12 +8,12 @@ import java.util.Set;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-import com.revature.beans.Department;
-import com.revature.beans.Employee;
 import com.revature.data.postgres.EmployeePostgres;
+import com.revature.models.Department;
+import com.revature.models.Employee;
 import com.revature.utils.DAOFactory;
 
-public class EmployeeDaoTest {
+public class EmployeeDAOTest {
 	private EmployeeDAO ed = DAOFactory.getEmployeeDAO();
 
 	@BeforeEach

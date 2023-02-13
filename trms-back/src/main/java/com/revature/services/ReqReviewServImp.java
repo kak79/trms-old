@@ -2,11 +2,11 @@ package com.revature.services;
 
 import java.util.Set;
 
-import com.revature.beans.Comment;
-import com.revature.beans.Employee;
-import com.revature.beans.Reimbursement;
-import com.revature.beans.Status;
 import com.revature.data.ReimbursementDAO;
+import com.revature.models.Comment;
+import com.revature.models.Employee;
+import com.revature.models.Reimbursement;
+import com.revature.models.Status;
 import com.revature.utils.DAOFactory;
 
 public class ReqReviewServImp implements RequestReviewService {

@@ -8,8 +8,8 @@ import java.util.Set;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-import com.revature.beans.EventType;
 import com.revature.data.postgres.EventTypePostgres;
+import com.revature.models.EventType;
 import com.revature.utils.DAOFactory;
 
 public class EventTypeDaoTest {

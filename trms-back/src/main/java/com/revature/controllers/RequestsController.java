@@ -4,11 +4,11 @@ import java.util.Set;
 
 import org.apache.logging.log4j.LogManager;
 
-import com.revature.beans.Employee;
-import com.revature.beans.Reimbursement;
 import com.revature.data.EmployeeDAO;
 import com.revature.data.ReimbursementDAO;
 import com.revature.exceptions.NoRequestsForRequestorException;
+import com.revature.models.Employee;
+import com.revature.models.Reimbursement;
 import com.revature.services.EmployeeService;
 import com.revature.services.EmployeeServiceImpl;
 import com.revature.services.ReqReviewServImp;

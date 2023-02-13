@@ -8,8 +8,8 @@ import java.util.Set;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-import com.revature.beans.GradingFormat;
 import com.revature.data.postgres.GradingFormatPostgres;
+import com.revature.models.GradingFormat;
 import com.revature.utils.DAOFactory;
 
 public class GradingFormatDaoTest {

@@ -8,8 +8,8 @@ import java.util.Set;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-import com.revature.beans.Department;
 import com.revature.data.postgres.DepartmentPostgres;
+import com.revature.models.Department;
 import com.revature.utils.DAOFactory;
 
 public class DepartmentDaoTest {

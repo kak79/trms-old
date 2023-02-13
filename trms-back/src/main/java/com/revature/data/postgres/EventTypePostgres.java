@@ -8,8 +8,8 @@ import java.sql.Statement;
 import java.util.HashSet;
 import java.util.Set;
 
-import com.revature.beans.EventType;
 import com.revature.data.EventTypeDAO;
+import com.revature.models.EventType;
 import com.revature.utils.ConnectionUtil;
 
 public class EventTypePostgres implements EventTypeDAO {

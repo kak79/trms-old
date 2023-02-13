@@ -1,6 +1,8 @@
-package com.revature.beans;
+package com.revature.models;
 
-import java.time.LocalDateTime;
+import java.time.LocalDate;
+import java.time.LocalTime;
+import java.time.format.DateTimeFormatter;
 import java.util.Objects;
 
 public class Comment {
@@ -8,14 +10,11 @@ public class Comment {
 	private Reimbursement request;
 	private Employee approver;
 	private String commentText;
-	private LocalDateTime sentAt;
+	private String sentDate;
+	private String sentTime;
 	
 	public Comment() {
-		commentId = 0;
-		request=null;
-		approver=null;
-		commentText="";
-		sentAt=LocalDateTime.now();
+		super();
 	}
 
 	public int getCommentId() {
@@ -50,17 +49,35 @@ public class Comment {
 		this.commentText = commentText;
 	}
 
-	public LocalDateTime getSentAt() {
-		return sentAt;
+	public LocalDate getSentDate() {
+		DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+        LocalDate ld = LocalDate.parse(sentDate,formatter);
+		return ld;
 	}
 
-	public void setSentAt(LocalDateTime sentAt) {
-		this.sentAt = sentAt;
+	public void setSentDate(LocalDate sentDate) {
+		this.sentDate = String.valueOf(sentDate);
+	}
+
+	public LocalTime getSentTime() {
+		DateTimeFormatter formatter = DateTimeFormatter.ofPattern("HH:mm:ss");
+        LocalTime lt = LocalTime.parse(sentTime,formatter);
+		return lt;
+	}
+
+	public void setSentTime(LocalTime sentTime) {
+		this.sentTime = String.valueOf(sentTime);
+	}
+
+	@Override
+	public String toString() {
+		return "Comment [commentId=" + commentId + ", request=" + request + ", approver=" + approver + ", commentText="
+				+ commentText + ", sentDate=" + sentDate + ", sentTime=" + sentTime + "]";
 	}
 
 	@Override
 	public int hashCode() {
-		return Objects.hash(approver, commentId, commentText, request, sentAt);
+		return Objects.hash(approver, commentId, commentText, request, sentDate, sentTime);
 	}
 
 	@Override
@@ -74,12 +91,12 @@ public class Comment {
 		Comment other = (Comment) obj;
 		return Objects.equals(approver, other.approver) && commentId == other.commentId
 				&& Objects.equals(commentText, other.commentText) && Objects.equals(request, other.request)
-				&& Objects.equals(sentAt, other.sentAt);
+				&& Objects.equals(sentDate, other.sentDate) && Objects.equals(sentTime, other.sentTime);
 	}
 
-	@Override
-	public String toString() {
-		return "Comment [commentId=" + commentId + ", request=" + request + ", approver=" + approver + ", commentText="
-				+ commentText + ", sentAt=" + sentAt + "]";
-	}
-}
+
+	
+	
+	
+	
+}	

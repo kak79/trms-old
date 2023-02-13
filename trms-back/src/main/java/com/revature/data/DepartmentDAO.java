@@ -2,7 +2,7 @@ package com.revature.data;
 
 import java.util.Set;
 
-import com.revature.beans.Department;
+import com.revature.models.Department;
 
 public interface DepartmentDAO {
 	public Department getById(int id);

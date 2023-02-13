@@ -1,24 +1,22 @@
-package com.revature.beans;
+package com.revature.models;
 
 import java.util.Objects;
 
 public class Status {
 	private int statusId;
-	private String name;
+	private String statusName;
 	private String approver;
 	
 	public Status() {
-		statusId=1;
-		name="Pending Approval";
-		approver="System";
+		super();
 	}
 	
 	
 
-	public Status(int statusId, String name, String approver) {
+	public Status(int statusId, String statusName, String approver) {
 		super();
 		this.statusId = statusId;
-		this.name = name;
+		this.statusName = statusName;
 		this.approver = approver;
 	}
 
@@ -28,30 +26,51 @@ public class Status {
 		return statusId;
 	}
 
+
+
 	public void setStatusId(int statusId) {
 		this.statusId = statusId;
 	}
 
-	public String getName() {
-		return name;
+
+
+	public String getStatusName() {
+		return statusName;
 	}
 
-	public void setName(String name) {
-		this.name = name;
+
+
+	public void setStatusName(String statusName) {
+		this.statusName = statusName;
 	}
+
+
 
 	public String getApprover() {
 		return approver;
 	}
 
+
+
 	public void setApprover(String approver) {
 		this.approver = approver;
 	}
 
+
+
+	@Override
+	public String toString() {
+		return "Status [statusId=" + statusId + ", statusName=" + statusName + ", approver=" + approver + "]";
+	}
+
+
+
 	@Override
 	public int hashCode() {
-		return Objects.hash(approver, name, statusId);
+		return Objects.hash(approver, statusId, statusName);
 	}
+
+
 
 	@Override
 	public boolean equals(Object obj) {
@@ -62,12 +81,15 @@ public class Status {
 		if (getClass() != obj.getClass())
 			return false;
 		Status other = (Status) obj;
-		return Objects.equals(approver, other.approver) && Objects.equals(name, other.name)
-				&& statusId == other.statusId;
+		return Objects.equals(approver, other.approver) && statusId == other.statusId
+				&& Objects.equals(statusName, other.statusName);
 	}
 
-	@Override
-	public String toString() {
-		return "Status [statusId=" + statusId + ", name=" + name + ", approver=" + approver + "]";
-	}
+
+
+	
+
+	
+	
+	
 }

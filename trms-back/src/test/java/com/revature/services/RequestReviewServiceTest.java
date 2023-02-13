@@ -13,14 +13,6 @@ import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
 
-import com.revature.beans.Comment;
-import com.revature.beans.Department;
-import com.revature.beans.Employee;
-import com.revature.beans.EventType;
-import com.revature.beans.GradingFormat;
-import com.revature.beans.Reimbursement;
-import com.revature.beans.Role;
-import com.revature.beans.Status;
 import com.revature.data.CommentDAO;
 import com.revature.data.DepartmentDAO;
 import com.revature.data.EmployeeDAO;
@@ -28,6 +20,14 @@ import com.revature.data.EventTypeDAO;
 import com.revature.data.GradingFormatDAO;
 import com.revature.data.ReimbursementDAO;
 import com.revature.data.StatusDAO;
+import com.revature.models.Comment;
+import com.revature.models.Department;
+import com.revature.models.Employee;
+import com.revature.models.EventType;
+import com.revature.models.GradingFormat;
+import com.revature.models.Reimbursement;
+import com.revature.models.Role;
+import com.revature.models.Status;
 
 @ExtendWith(MockitoExtension.class)
 public class RequestReviewServiceTest {

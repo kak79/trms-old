@@ -5,10 +5,6 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.Set;
 
-import com.revature.beans.Comment;
-import com.revature.beans.Employee;
-import com.revature.beans.Reimbursement;
-import com.revature.beans.Status;
 import com.revature.data.CommentDAO;
 import com.revature.data.EmployeeDAO;
 import com.revature.data.EventTypeDAO;
@@ -16,6 +12,10 @@ import com.revature.data.GradingFormatDAO;
 import com.revature.data.ReimbursementDAO;
 import com.revature.data.StatusDAO;
 import com.revature.exceptions.WrongUsrnmPsswrdException;
+import com.revature.models.Comment;
+import com.revature.models.Employee;
+import com.revature.models.Reimbursement;
+import com.revature.models.Status;
 import com.revature.utils.DAOFactory;
 
 public class EmployeeServiceImpl implements EmployeeService {

@@ -8,9 +8,9 @@ import java.sql.Statement;
 import java.util.HashSet;
 import java.util.Set;
 
-import com.revature.beans.Employee;
-import com.revature.beans.Role;
 import com.revature.data.EmployeeDAO;
+import com.revature.models.Employee;
+import com.revature.models.Role;
 import com.revature.utils.ConnectionUtil;
 
 public class EmployeePostgres implements EmployeeDAO {

@@ -8,10 +8,10 @@ import java.util.Set;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-import com.revature.beans.Comment;
-import com.revature.beans.Employee;
-import com.revature.beans.Reimbursement;
 import com.revature.data.postgres.CommentPostgres;
+import com.revature.models.Comment;
+import com.revature.models.Employee;
+import com.revature.models.Reimbursement;
 import com.revature.utils.DAOFactory;
 
 public class CommentDaoTest {

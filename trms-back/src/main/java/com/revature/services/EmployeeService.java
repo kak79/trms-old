@@ -3,10 +3,10 @@ package com.revature.services;
 import java.util.Set;
 import java.util.Map;
 
-import com.revature.beans.Comment;
-import com.revature.beans.Employee;
-import com.revature.beans.Reimbursement;
 import com.revature.exceptions.WrongUsrnmPsswrdException;
+import com.revature.models.Comment;
+import com.revature.models.Employee;
+import com.revature.models.Reimbursement;
 
 public interface EmployeeService {
 	public Employee logIn(String username, String password) throws WrongUsrnmPsswrdException;

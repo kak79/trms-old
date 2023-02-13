@@ -2,7 +2,7 @@ package com.revature.data;
 
 import java.util.Set;
 
-import com.revature.beans.Comment;
+import com.revature.models.Comment;
 
 public interface CommentDAO {
 	public int create(Comment dataToAdd);

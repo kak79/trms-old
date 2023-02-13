@@ -2,7 +2,7 @@ package com.revature.data;
 
 import java.util.Set;
 
-import com.revature.beans.GradingFormat;
+import com.revature.models.GradingFormat;
 
 public interface GradingFormatDAO {
 	public GradingFormat getById(int id);

@@ -2,9 +2,9 @@ package com.revature.services;
 
 import java.util.Set;
 
-import com.revature.beans.Comment;
-import com.revature.beans.Employee;
-import com.revature.beans.Reimbursement;
+import com.revature.models.Comment;
+import com.revature.models.Employee;
+import com.revature.models.Reimbursement;
 
 public interface RequestReviewService {
 	/**

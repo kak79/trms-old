@@ -10,10 +10,10 @@ import java.time.LocalDateTime;
 import java.util.HashSet;
 import java.util.Set;
 
-import com.revature.beans.Comment;
-import com.revature.beans.Employee;
-import com.revature.beans.Reimbursement;
 import com.revature.data.CommentDAO;
+import com.revature.models.Comment;
+import com.revature.models.Employee;
+import com.revature.models.Reimbursement;
 import com.revature.utils.ConnectionUtil;
 
 public class CommentPostgres implements CommentDAO {

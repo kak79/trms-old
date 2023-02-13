@@ -2,7 +2,7 @@ package com.revature.data;
 
 import java.util.Set;
 
-import com.revature.beans.EventType;
+import com.revature.models.EventType;
 
 public interface EventTypeDAO {
 	public EventType getById(int id);
